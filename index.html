@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <title>Sistema de Estatística</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" type="text/css" href="main.css" /> -->
+        <script src="main.js"></script>
+    </head>
+    <body>
+
+    <h1 class="title1">Sistema de Estatística</h1>
+
+    <form onsubmit="passardados()" action="resultados.html">
+
+        <div class="opcao">
+            <h2 class="tilte2">Tipo de Variável</h2>
+            <input type="radio" name="variavel" id="opcao1" value="nominal" class="item" onclick="habilitarOrdinal(this.value)" checked/>            
+            <label for="opcao1">Qualitativa Nominal</label>
+            <input type="radio" name="variavel" id="opcao2" value="ordinal" class="item" onclick="habilitarOrdinal(this.value)"/>            
+            <label for="opcao2">Qualitativa Ordinal</label>    
+            <input type="radio" name="variavel" id="opcao3" value="discreta" class="item" onclick="habilitarOrdinal(this.value)"/>                
+            <label for="opcao3">Quantitativa Discreta</label>    
+            <input type="radio" name="variavel" id="opcao4" value="continua" class="item" onclick="habilitarOrdinal(this.value)"/>                                            
+            <label for="opcao4">Quantitativa Contínua</label>                        
+        </div>
+
+        <div class="entradaOrdinal">
+            <h2 class="title2" title="somente se a variável for ordinal">Ordenação das variáveis ordinais</h2>
+            <input type="text" id="ord" name="ordinal" class="ordinal" placeholder="EX:bom;regular;pessimo" disabled>
+        </div>
+
+        <div class="opcao">
+            <h2 class="title2">Processo Estatístico</h2>
+            <input type="radio" name="processo" id="processo1" value="populacao" class="item" checked/>            
+            <label for="processo1">Censo(População)</label>
+            <input type="radio" name="processo" id="processo2" value="amostra" class="item"/>            
+            <label for="processo2">Estimação(Amostra)</label>        
+        </div>
+
+        <div class="name">
+            <h2 class="title2">Nome da Variável</h2>
+            <input type="text" class="dados" required>
+            <h2 class="title2">Nome da Frequência</h2>
+            <input type="text" class="dados" required>
+        </div>
+
+        <div class="opcao">
+            <h2 class="tilte2">Medidas Separatrizes</h2>
+            <input type="radio" name="separatriz" id="q" value="quartil" class="item" onclick="medidaSeparatriz(this.value)" checked/>            
+            <label for="q">Quartil</label>
+            <input type="radio" name="separatriz" id="k" value="quintil" class="item" onclick="medidaSeparatriz(this.value)"/>            
+            <label for="k">Quintil</label>    
+            <input type="radio" name="separatriz" id="d" value="decil" class="item" onclick="medidaSeparatriz(this.value)"/>                
+            <label for="d">Decil</label>    
+            <input type="radio" name="separatriz" id="p" value="porcentil" class="item" onclick="medidaSeparatriz(this.value)"/>                                            
+            <label for="p">Porcentil</label> 
+            <!-- tirar esse br depois-->
+            <br><br> 
+            <label for="valor">Valor</label>
+            <input type="number" step="25" min="0" max="100" title="valor da medida separatriz" id="valor" value="0">            
+        </div>
+
+        <div class="entradaDados">
+            <h2 class="title2" title="separar dados por ponto e vírgula">Entrada de dados</h2>
+            <textarea name="entrada"  cols="40" rows="5" class="dados" placeholder="EX:5;3;9;5" required></textarea>
+        </div>
+
+        <input type="submit" value="Analisar"/>
+    </form>
+
+    </body>
+</html>
