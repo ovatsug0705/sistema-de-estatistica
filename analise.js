@@ -7,27 +7,30 @@ window.onload = function analisar() {
         nomeFrequencia = window.localStorage.getItem("nomefrequencia"),
         medidaSeparatriz = window.localStorage.getItem("medidaseparatriz");
 
-    if (variavel == "ordinal" || variavel == "nominal") {
-        var ordinal = window.localStorage.getItem("ordinal");
-        qualitativa(dados, ordinal, nomeVariavel, nomeFrequencia, variavel);
-    }
-    else if (variavel == "discreta") {
-        quantitativaDiscreta(dados, processoEstatistico, nomeVariavel, nomeFrequencia, medidaSeparatriz);
-    }
-    else if (variavel == "continua") {
+    if (variavel == "continua") {
         quantitativaContinua(dados, processoEstatistico, nomeVariavel, nomeFrequencia, medidaSeparatriz);
+    }
+    else{
+        var ordinal = window.localStorage.getItem("ordinal");
+        qualitativa_quantitativaDiscreta(dados, ordinal, nomeVariavel, nomeFrequencia, variavel, processoEstatistico, medidaSeparatriz);
     }
 }
 
-function qualitativa(dados2, ordinal, nomeVar, nomeFreq, tipo) {
-    var ultima = 0, ord, ordem, tabela = [[]], comparacao, numero = 0, aux = 0, aux2 = 0, tamanho = 1, cont = 1,
-        cont2 = 0;
+function qualitativa_quantitativaDiscreta(dados2, ordinal, nomeVar, nomeFreq, tipo, processo, medida) {
+    var ultima = 0, 
+        ord, ordem, tabela = [[]], comparacao, numero = 0, aux = 0, aux2 = 0, 
+        tamanho = 1, cont = 1,cont2 = 0,
+        media = 0, moda = [],
+        moda2 = [], mediana = 2, somaFrequencia = 0, 
+        desvioPadrao = 0, 
+        coeficienteDeVariacao = 0,
+        medidaSeparatriz = 0;
 
     //ordena os dados
     if (tipo == "nominal"){
         dados2.sort();
     }
-    else{
+    else if (tipo == "ordinal"){
         ord = ordinal.split(";");
 
         for (var i = 0; i < ord.length - 1; i++) {
@@ -40,6 +43,13 @@ function qualitativa(dados2, ordinal, nomeVar, nomeFreq, tipo) {
                 }
             }
         }
+    }
+    else{
+        for (var i = 0; i < dados2.length; i++) {
+            dados2[i] = Number(dados2[i]);
+        }
+    
+        dados2.sort(ordenaNum);
     }
     
     console.log(dados2)
@@ -96,142 +106,76 @@ function qualitativa(dados2, ordinal, nomeVar, nomeFreq, tipo) {
 
     console.log(tabela);
 
-}
+    if (tipo == "discreta"){
+        //Cálculo Média e Moda
+        for (var i = 1; i <= tamanho; i++) {
+            media += tabela[i][1] * tabela[i][2];
+            somaFrequencia += tabela[i][2];
 
-function quantitativaDiscreta(dados2, processo, nomeVar, nomeFreq, medida) {
-
-    //ordena os dados
-    for (var i = 0; i < dados2.length; i++) {
-        dados2[i] = Number(dados2[i]);
-    }
-
-    dados2.sort(ordenaNum);
-    console.log(dados2)
-
-    //declaração de variaveis
-    var tabela = [[]], comparacao, aux = 0, aux2 = 0, tamanho = 1, cont = 1, cont2 = 0, media = 0, moda = [],
-        moda2 = [], numero = 0, mediana = 2, somaFrequencia = 0, desvioPadrao = 0, coeficienteDeVariacao = 0,
-        medidaSeparatriz = 0;
-
-    //adiciona as variaveis dentro da coluna de variaveis e define o número de classes
-    tabela[0][1] = dados2[0];
-    comparacao = dados2[0];
-    for (var i = 0; i < dados2.length; i++) {
-        if (dados2[i] != comparacao) {
-            tabela.push([]);
-            tabela[tamanho][1] = dados2[i];
-            tamanho++;
-            comparacao = dados2[i];
+            if (i == 1) {
+                moda.push(tabela[i][2]);
+                moda2.push(tabela[i][1]);
+            }
+            else if (tabela[i][2] > moda[moda.length - 1]) {
+                moda.length = 0;
+                moda.push(tabela[i][2]);
+                moda2.length = 0;
+                moda2.push(tabela[i][1]);
+            }
+            else if (tabela[i][2] == moda[moda.length - 1]) {
+                moda.push(tabela[i][2]);
+                moda2.push(tabela[i][1]);
+            }
         }
-    }
+        media = media / somaFrequencia;
+        media = parseFloat(media.toFixed(2));
 
-    //adiciona as frequencias simples
-    comparacao = dados2[0];
-    for (var i = 1; i < dados2.length; i++) {
-        if (comparacao == dados2[i]) {
-            cont++;
+        console.log("A media é: " + media)
+
+        if (moda2.length == tamanho) {
+            console.log("Amodal");
         }
         else {
-            tabela[cont2][2] = cont;
-            cont2++
-            cont = 1;
-            comparacao = dados2[i];
+            console.log("A(s) moda(s) é(são): " + moda2);
         }
 
-        if (i == dados2.length - 1) {
-            tabela[cont2][2] = cont;
-            cont2++
-            cont = 1;
-            comparacao = dados2[i];
+        //calculo mediana
+        if (somaFrequencia % 2 == 0) {
+            mediana = (dados2[somaFrequencia / 2 - 1] + dados2[somaFrequencia / 2]) / 2;
         }
-    }
-
-    //adiciona as frequencias simples percentual, acumulada, acumulada percentual e classes na tabela
-    for (var i = 0; i < tamanho; i++) {
-        numero = (tabela[i][2] / dados2.length) * 100;
-        tabela[i][3] = parseFloat(numero.toFixed(2));
-        tabela[i][0] = i + 1;
-
-        tabela[i][4] = aux + tabela[i][2];
-        aux = tabela[i][4];
-        tabela[i][5] = aux2 + tabela[i][3];
-        aux2 = tabela[i][5];
-    }
-
-    //adiciona o cabeçalho da tabela
-    tabela.unshift(["Classe", nomeVar, nomeFreq, "Frequencia Simples Percentual",
-        "Frequencia Acumulada", "Frequencia Acumulada Percentual"])
-
-    console.log(tabela);
-
-    //Cálculo Média e Moda
-    for (var i = 1; i <= tamanho; i++) {
-        media += tabela[i][1] * tabela[i][2];
-        somaFrequencia += tabela[i][2];
-
-        if (i == 1) {
-            moda.push(tabela[i][2]);
-            moda2.push(tabela[i][1]);
+        else {
+            mediana = dados2[Math.floor(somaFrequencia / 2)];
         }
-        else if (tabela[i][2] > moda[moda.length - 1]) {
-            moda.length = 0;
-            moda.push(tabela[i][2]);
-            moda2.length = 0;
-            moda2.push(tabela[i][1]);
+        console.log("Mediana: " + mediana);
+
+        //Desvio Padrão
+        for (var i = 1; i <= tamanho; i++) {
+            desvioPadrao += ((Math.pow(tabela[i][1] - media, 2)) * tabela[i][2]);
         }
-        else if (tabela[i][2] == moda[moda.length - 1]) {
-            moda.push(tabela[i][2]);
-            moda2.push(tabela[i][1]);
+        if (processo == "populacao") {
+            desvioPadrao = Math.sqrt(desvioPadrao / somaFrequencia);
         }
-    }
-    media = media / somaFrequencia;
-    media = parseFloat(media.toFixed(2));
-
-    console.log("A media é: " + media)
-
-    if (moda2.length == tamanho) {
-        console.log("Amodal");
-    }
-    else {
-        console.log("A(s) moda(s) é(são): " + moda2);
-    }
-
-    //calculo mediana
-    if (somaFrequencia % 2 == 0) {
-        mediana = (dados2[somaFrequencia / 2 - 1] + dados2[somaFrequencia / 2]) / 2;
-    }
-    else {
-        mediana = dados2[Math.floor(somaFrequencia / 2)];
-    }
-    console.log("Mediana: " + mediana);
-
-    //Desvio Padrão
-    for (var i = 1; i <= tamanho; i++) {
-        desvioPadrao += ((Math.pow(tabela[i][1] - media, 2)) * tabela[i][2]);
-    }
-    if (processo == "populacao") {
-        desvioPadrao = Math.sqrt(desvioPadrao / somaFrequencia);
-    }
-    else if (processo == "amostra") {
-        desvioPadrao = Math.sqrt(desvioPadrao / (somaFrequencia - 1));
-    }
-    desvioPadrao = desvioPadrao.toFixed(2);
-    coeficienteDeVariacao = (desvioPadrao / media) * 100;
-    coeficienteDeVariacao = coeficienteDeVariacao.toFixed(2);
-    console.log("O desvio padrão é de: " + desvioPadrao);
-    console.log("O coeficiente de variação é de: " + coeficienteDeVariacao);
-
-    //Medida Separatriz
-    medidaSeparatriz = Math.round((parseInt(medida) * somaFrequencia) / 100);
-    comparacao = true;
-    cont = 1;
-    while (comparacao) {
-        if (medidaSeparatriz <= tabela[cont][4]) {
-            console.log(medida + "% dos dados são " + tabela[cont][1] + " ou menos.");
-            console.log(100 - medida + "% dos dados são " + tabela[cont][1] + " ou mais.");
-            comparacao = false;
+        else if (processo == "amostra") {
+            desvioPadrao = Math.sqrt(desvioPadrao / (somaFrequencia - 1));
         }
-        cont++;
+        desvioPadrao = desvioPadrao.toFixed(2);
+        coeficienteDeVariacao = (desvioPadrao / media) * 100;
+        coeficienteDeVariacao = coeficienteDeVariacao.toFixed(2);
+        console.log("O desvio padrão é de: " + desvioPadrao);
+        console.log("O coeficiente de variação é de: " + coeficienteDeVariacao);
+
+        //Medida Separatriz
+        medidaSeparatriz = Math.round((parseInt(medida) * somaFrequencia) / 100);
+        comparacao = true;
+        cont = 1;
+        while (comparacao) {
+            if (medidaSeparatriz <= tabela[cont][4]) {
+                console.log(medida + "% dos dados são " + tabela[cont][1] + " ou menos.");
+                console.log(100 - medida + "% dos dados são " + tabela[cont][1] + " ou mais.");
+                comparacao = false;
+            }
+            cont++;
+        }
     }
 }
 
