@@ -1,4 +1,6 @@
-window.onload = function analisar() {
+window.addEventListener("load", analisar);
+
+function analisar() {
 
     var variavel = window.localStorage.getItem("variavel"),
         dados = window.localStorage.getItem("dados").split(";"),
@@ -8,29 +10,29 @@ window.onload = function analisar() {
         medidaSeparatriz = window.localStorage.getItem("medidaseparatriz");
 
     if (variavel == "continua") {
-        quantitativaContinua(dados, processoEstatistico, nomeVariavel, nomeFrequencia, medidaSeparatriz);
+        quantitativaContinua(dados, processoEstatistico, nomeVariavel, nomeFrequencia, medidaSeparatriz, variavel);
     }
-    else{
+    else {
         var ordinal = window.localStorage.getItem("ordinal");
         qualitativa_quantitativaDiscreta(dados, ordinal, nomeVariavel, nomeFrequencia, variavel, processoEstatistico, medidaSeparatriz);
     }
 }
 
 function qualitativa_quantitativaDiscreta(dados2, ordinal, nomeVar, nomeFreq, tipo, processo, medida) {
-    var ultima = 0, 
-        ord, ordem, tabela = [[]], comparacao, numero = 0, aux = 0, aux2 = 0, 
-        tamanho = 1, cont = 1,cont2 = 0,
+    var ultima = 0,
+        ord, ordem, tabela = [[]], comparacao, numero = 0, aux = 0, aux2 = 0,
+        tamanho = 1, cont = 1, cont2 = 0,
         media = 0, moda = [],
-        moda2 = [], mediana = 2, somaFrequencia = 0, 
-        desvioPadrao = 0, 
+        moda2 = [], valorModa, mediana = 2, somaFrequencia = 0,
+        desvioPadrao = 0,
         coeficienteDeVariacao = 0,
         medidaSeparatriz = 0;
 
     //ordena os dados
-    if (tipo == "nominal"){
+    if (tipo == "nominal") {
         dados2.sort();
     }
-    else if (tipo == "ordinal"){
+    else if (tipo == "ordinal") {
         ord = ordinal.split(";");
 
         for (var i = 0; i < ord.length - 1; i++) {
@@ -44,14 +46,14 @@ function qualitativa_quantitativaDiscreta(dados2, ordinal, nomeVar, nomeFreq, ti
             }
         }
     }
-    else{
+    else {
         for (var i = 0; i < dados2.length; i++) {
             dados2[i] = Number(dados2[i]);
         }
-    
+
         dados2.sort(ordenaNum);
     }
-    
+
     console.log(dados2)
 
     //adiciona as variaveis dentro da coluna de variaveis
@@ -106,7 +108,7 @@ function qualitativa_quantitativaDiscreta(dados2, ordinal, nomeVar, nomeFreq, ti
 
     console.log(tabela);
 
-    if (tipo == "discreta"){
+    if (tipo == "discreta") {
         //Cálculo Média e Moda
         for (var i = 1; i <= tamanho; i++) {
             media += tabela[i][1] * tabela[i][2];
@@ -133,10 +135,12 @@ function qualitativa_quantitativaDiscreta(dados2, ordinal, nomeVar, nomeFreq, ti
         console.log("A media é: " + media)
 
         if (moda2.length == tamanho) {
-            console.log("Amodal");
+            valorModa = "Amodal"
+            console.log(valorModa);
         }
         else {
-            console.log("A(s) moda(s) é(são): " + moda2);
+            valorModa = moda2;
+            console.log("A(s) moda(s) é(são): " + valorModa);
         }
 
         //calculo mediana
@@ -173,13 +177,16 @@ function qualitativa_quantitativaDiscreta(dados2, ordinal, nomeVar, nomeFreq, ti
                 console.log(medida + "% dos dados são " + tabela[cont][1] + " ou menos.");
                 console.log(100 - medida + "% dos dados são " + tabela[cont][1] + " ou mais.");
                 comparacao = false;
+                medidaSeparatriz = tabela[cont][1];
             }
             cont++;
         }
     }
+
+    saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, coeficienteDeVariacao, medida, medidaSeparatriz, tipo);
 }
 
-function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida) {
+function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida, tipo) {
 
     //ordena os dados
     for (var i = 0; i < dados2.length; i++) {
@@ -191,8 +198,8 @@ function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida) {
 
     var tabela = [], comparacao, aux = 0, aux2 = 0, tamanho = 0, somaFrequencia = 0, cont = 0, amp = 0, classe = 0,
         classes = [], rep = true, min = 0, max = 0, media = 0, mediana = 0, moda = [], moda2 = [], moda3 = [],
-        modaPearson = 0, vetorMin = [], vetorMax = [], vetorPM = [], x = 0, numero = 0, desvioPadrao = 0,
-        fanta = 0, fiant = 0, fipos = 0, intervalo = 0, medidaSeparatriz;
+        modaPearson = 0, modaKing = [], modaCzuber = [], valorModa, vetorMin = [], vetorMax = [], vetorPM = [], x = 0,
+        numero = 0, desvioPadrao = 0, fanta = 0, fiant = 0, fipos = 0, intervalo = 0, medidaSeparatriz;
 
     //Amplitude
     amp = ((dados2[dados2.length - 1]) - dados2[0]) + 1;
@@ -279,7 +286,7 @@ function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida) {
     console.log(tabela);
 
     //media e Moda Convencional
- 
+
     for (var i = 1; i <= tamanho; i++) {
         media += vetorPM[i - 1] * tabela[i][2];
 
@@ -353,74 +360,52 @@ function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida) {
 
     //Saida da Moda Convencional
     if (moda2.length == tamanho) {
-        console.log("Amodal");
+        valorModa = "Amodal";
+        console.log(valorModa);
     }
     else {
-        console.log("A(s) moda(s) convencional(s) é(são): " + moda2);
+        valorModa = moda2;
+        console.log("A(s) moda(s) convencional(s) é(são): " + valorModa);
+
+        //Moda de Pearson
+        modaPearson = 3 * mediana - 2 * media;
+        modaPearson = modaPearson.toFixed(2);
+        console.log("A moda de Pearson é: " + modaPearson);
+
+        //Moda de King e Czuber
+        for (var i = 0; i < moda.length; i++) {
+            if (moda3[i] != 1 && moda3[i] != tamanho) {
+                fiant = tabela[moda3[i] - 1][2];
+                fipos = tabela[moda3[i] + 1][2];
+                modaKing.push(vetorMin[moda3[i] - 1] + (fipos / (fipos + fiant)) * intervalo);
+                modaCzuber.push(vetorMin[moda3[i] - 1] + ((tabela[moda3[i]][2] - fiant)
+                    / ((tabela[moda3[i]][2] - fiant) + (tabela[moda3[i]][2] - fipos))) * intervalo);
+            }
+            else if (tamanho == 1) {
+                fiant = 0;
+                fipos = 0;
+                modaKing.push(vetorMin[moda3[i] - 1]);
+                modaCzuber.push(vetorMin[moda3[i] - 1] + ((tabela[moda3[i]][2] - fiant)
+                    / ((tabela[moda3[i]][2] - fiant) + (tabela[moda3[i]][2] - fipos))) * intervalo);
+            }
+            else if (moda3[i] == 1) {
+                fiant = 0;
+                fipos = tabela[moda3[i] + 1][2];
+                modaKing.push(vetorMin[moda3[i] - 1] + (fipos / (fipos + fiant)) * intervalo);
+                modaCzuber.push(vetorMin[moda3[i] - 1] + ((tabela[moda3[i]][2] - fiant)
+                    / ((tabela[moda3[i]][2] - fiant) + (tabela[moda3[i]][2] - fipos))) * intervalo);
+            }
+            else if (moda3[i] == tamanho) {
+                fiant = tabela[moda3[i] - 1][2];
+                fipos = 0;
+                modaKing.push(vetorMin[moda3[i] - 1] + (fipos / (fipos + fiant)) * intervalo);
+                modaCzuber.push(vetorMin[moda3[i] - 1] + ((tabela[moda3[i]][2] - fiant)
+                    / ((tabela[moda3[i]][2] - fiant) + (tabela[moda3[i]][2] - fipos))) * intervalo);
+            }
+        }
+        console.log("A(s) moda(s) de King é(são): " + modaKing);
+        console.log("A(s) moda(s) de Czuber é(são): " + modaCzuber);
     }
-
-    //Moda de Pearson
-    modaPearson = 3 * mediana - 2 * media;
-    modaPearson = modaPearson.toFixed(2);
-    console.log("A moda de Pearson é: " + modaPearson);
-
-    //Moda de King
-    moda2.length = 0;
-    for (var i = 0; i < moda.length; i++) {
-        if (moda3[i] != 1 && moda3[i] != tamanho) {
-            fiant = tabela[moda3[i] - 1][2];
-            fipos = tabela[moda3[i] + 1][2];
-            moda2.push(vetorMin[moda3[i] - 1] + (fipos / (fipos + fiant)) * intervalo);
-        }
-        else if (tamanho == 1) {
-            fiant = 0;
-            fipos = 0;
-            moda2.push(vetorMin[moda3[i] - 1]);
-        }
-        else if (moda3[i] == 1) {
-            fiant = 0;
-            fipos = tabela[moda3[i] + 1][2];
-            moda2.push(vetorMin[moda3[i] - 1] + (fipos / (fipos + fiant)) * intervalo);
-        }
-        else if (moda3[i] == tamanho) {
-            fiant = tabela[moda3[i] - 1][2];
-            fipos = 0;
-            moda2.push(vetorMin[moda3[i] - 1] + (fipos / (fipos + fiant)) * intervalo);
-        }
-    }
-    console.log("A(s) moda(s) de King é(são): " + moda2);
-
-
-    //Moda de Czuber
-    moda2.length = 0;
-    for (var i = 0; i < moda.length; i++) {
-        if (moda3[i] != 1 && moda3[i] != tamanho) {
-            fiant = tabela[moda3[i] - 1][2];
-            fipos = tabela[moda3[i] + 1][2];
-            moda2.push(vetorMin[moda3[i] - 1] + ((tabela[moda3[i]][2] - fiant)
-                / ((tabela[moda3[i]][2] - fiant) + (tabela[moda3[i]][2] - fipos))) * intervalo);
-        }
-        else if (tamanho == 1) {
-            fiant = 0;
-            fipos = 0;
-            moda2.push(vetorMin[moda3[i] - 1] + ((tabela[moda3[i]][2] - fiant) /
-                ((tabela[moda3[i]][2] - fiant) + (tabela[moda3[i]][2] - fipos))) * intervalo);
-        }
-        else if (moda3[i] == 1) {
-            fiant = 0;
-            fipos = tabela[moda3[i] + 1][2];
-            moda2.push(vetorMin[moda3[i] - 1] + ((tabela[moda3[i]][2] - fiant) /
-                ((tabela[moda3[i]][2] - fiant) + (tabela[moda3[i]][2] - fipos))) * intervalo);
-        }
-        else if (moda3[i] == tamanho) {
-            fiant = tabela[moda3[i] - 1][2];
-            fipos = 0;
-            moda2.push(vetorMin[moda3[i] - 1] + ((tabela[moda3[i]][2] - fiant) /
-                ((tabela[moda3[i]][2] - fiant) + (tabela[moda3[i]][2] - fipos))) * intervalo);
-        }
-    }
-    console.log("A(s) moda(s) de Czuber é(são): " + moda2);
-
 
     //Desvio Padrão
     for (var i = 1; i <= tamanho; i++) {
@@ -460,11 +445,163 @@ function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida) {
         cont++;
     }
 
+    saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, coeficienteDeVariacao, medida, medidaSeparatriz, tipo, modaCzuber, modaKing, modaPearson);
 }
 
 //função auxiliar da ordenação dos números da continua e discreta
 function ordenaNum(a, b) {
     return a - b
+}
+
+function saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, coeficienteDeVariacao, medida, medidaSeparatriz, variavel, modaCzuber, modaKing, modaPearson) {
+
+    //insere a tabela na tela
+    var table = document.createElement("table");
+    var div = document.querySelector(".container");
+
+    table.setAttribute("id", "tabelaDados");
+    div.appendChild(table);
+
+    var tr = document.createElement("tr");
+    table.appendChild(tr);
+
+    for (var i = 0; i < 6; i++) {
+        var th = document.createElement("th");
+        th.textContent = tabela[0][i];
+        tr.appendChild(th);
+    }
+
+    for (var i = 1; i <= tamanho; i++) {
+        var tr = document.createElement("tr");
+        table.appendChild(tr);
+        for (var x = 0; x < 6; x++) {
+            var td = document.createElement("td");
+            td.textContent = tabela[i][x];
+            tr.appendChild(td);
+        }
+    }
+
+    if (variavel == "discreta" || variavel == "continua") {
+
+        var div2 = document.querySelector(".container2");
+        var text;
+
+        //insere a media
+        var p = document.createElement("p");
+        text = document.createTextNode("A media é: " + media);
+        div2.appendChild(p);
+        p.appendChild(text);
+
+        //insere a mediana
+        var p2 = document.createElement("p");
+        text = document.createTextNode("A mediana é: " + mediana);
+        div2.appendChild(p2);
+        p2.appendChild(text);
+
+        //insere a moda
+        var p3 = document.createElement("p");
+        if (valorModa == "Amodal") {
+            text = document.createTextNode("Os dados são amodais");
+        }
+        else {
+            text = document.createTextNode("A(s) modas são:" + valorModa);
+        }
+        div2.appendChild(p3);
+        p3.appendChild(text);
+
+        //insere as modas exclusivas da mediana
+        if (variavel == "continua") {
+            var p8 = document.createElement("p");
+            text = document.createTextNode("A moda de Czuber é: " + modaCzuber);
+            div2.appendChild(p8);
+            p8.appendChild(text);
+
+            var p9 = document.createElement("p");
+            text = document.createTextNode("A moda de King é: " + modaKing);
+            div2.appendChild(p9);
+            p9.appendChild(text);
+
+            var p10 = document.createElement("p");
+            text = document.createTextNode("A moda de Peason é: " + modaPearson);
+            div2.appendChild(p10);
+            p10.appendChild(text);
+        }
+
+        //insere o desvio padrão
+        var p4 = document.createElement("p");
+        text = document.createTextNode("O desvio padrão é: " + desvioPadrao);
+        div2.appendChild(p4);
+        p4.appendChild(text);
+
+        //insere o coeficiente de variação
+        var p5 = document.createElement("p");
+        text = document.createTextNode("O coeficiente de variação é" + mediana);
+        div2.appendChild(p5);
+        p5.appendChild(text);
+
+        //insere a medida separatriz
+        var p6 = document.createElement("p");
+        text = document.createTextNode(medida + "% dos dados são  " + medidaSeparatriz + " ou menos");
+        div2.appendChild(p6);
+        p6.appendChild(text);
+        var p7 = document.createElement("p");
+        text = document.createTextNode(100 - medida + "% dos dados são  " + medidaSeparatriz + " ou mais");
+        div2.appendChild(p7);
+        p7.appendChild(text);
+    }
+
+    var label = [] , cores = [], valores = [], tipo, espaco = .9;
+
+    for (var i = 1; i <= tamanho; i++){
+        label.push(tabela[i][1]);
+        valores.push(tabela[i][3]);
+        cores.push('rgb(' + Math.random() * 250 + ', ' + Math.random() * 250 + ', ' + Math.random() * 250 + ')')
+    }
+
+    if (variavel == "ordinal" || variavel == "nominal") {
+        tipo = "pie";
+    }
+    else if(variavel == "discreta"){
+        tipo = "bar";
+    }
+    else{
+        tipo = "bar";
+        espaco = 1.25;
+    }
+
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: tipo,
+        data: {
+            labels: label,
+            datasets: [{
+                label: variavel,
+                data: valores,
+                backgroundColor: cores,
+            }],
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                }],
+
+                xAxes: [{
+                    categotyPercentage: espaco,
+                    barPercentage: espaco,                    
+                }]
+            },
+
+            title: {
+                display: true,
+                text: 'Gráfico'
+            },
+
+        }
+    });
+
 }
 
 

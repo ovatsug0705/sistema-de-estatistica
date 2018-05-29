@@ -107,11 +107,13 @@ gustavo;julia;larissa;lidiane;bruno;fulvio;guimaraes;fatima;bruno;gustavo;lidian
 
 85;79;64;76;80;74;77;72
 
-//bom;regular;regular;bom;bom;bom;ruim;regular;ruim;ruim
+bom;regular;regular;bom;bom;bom;ruim;regular;ruim;ruim
 
 ru;ru;ru;ru;ru;ru;re;re;re;re;re;re;re;re;re;re;re;re;o;o;o;o;o;o;o;o;o;o;o;o;o;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b;b
 
 6;6;5;5;5;5;2;2;2;2;4;4;4;3;3;3;3;3;3;3
 
 30;35;37;39;38;36;39;28;25;29;27;21;24;23;26;25;20;10;16;45;49;41;55;56;52;53;58;57;54;59
+
+10;10;20;20;30;10;50;20;30;10;30;20;10;50;30;30;40;10;40;40;10;20;40;40;30;50
 */
