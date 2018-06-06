@@ -1,4 +1,81 @@
-window.addEventListener("load", analisar);
+function medidaSeparatriz(separatriz){
+    if (separatriz == "quartil"){
+        document.querySelector("#valor").step = "25";
+        document.querySelector("#valor").value = "0"
+    }
+    else if(separatriz == "quintil"){
+        document.querySelector("#valor").step = "20";
+        document.querySelector("#valor").value = "0";
+    }
+    else if (separatriz == "decil"){
+        document.querySelector("#valor").step = "10";
+        document.querySelector("#valor").value = "0";
+    }
+    else{
+        document.querySelector("#valor").step = "1";
+        document.querySelector("#valor").value = "0";
+    }
+}
+
+function habilitarOrdinal(variavel){
+    if (variavel == "ordinal"){
+        document.querySelector(".ordinal").removeAttribute("disabled");
+        document.querySelector(".ordinal").setAttribute("required" , "true");
+    }
+    else{
+        document.querySelector(".ordinal").setAttribute("disabled" , "true");
+        document.querySelector(".ordinal").removeAttribute("required");
+        document.querySelector(".ordinal").value = "";
+    }
+}
+
+function passardados() {
+    
+    //dados para o processo
+    var dado = document.querySelectorAll(".dados")[2].value;
+    window.localStorage.setItem("dados", dado); 
+
+    //tipo da variavel
+    if (document.querySelectorAll(".item")[0].checked) {
+        dado = document.querySelectorAll(".item")[0].value;
+        window.localStorage.setItem("variavel" , dado);
+    }
+    else if (document.querySelectorAll(".item")[1].checked) {
+        dado = document.querySelectorAll(".item")[1].value;
+        window.localStorage.setItem("variavel" , dado);
+        dado = document.querySelector(".ordinal").value;
+        window.localStorage.setItem("ordinal" , dado);        
+    }
+    else if (document.querySelectorAll(".item")[2].checked) {
+        dado = document.querySelectorAll(".item")[2].value;
+        window.localStorage.setItem("variavel" , dado);  
+    }
+    else if (document.querySelectorAll(".item")[3].checked) {
+        dado = document.querySelectorAll(".item")[3].value;
+        window.localStorage.setItem("variavel" , dado);      
+    }
+
+    //censo ou estimação
+    if (document.querySelectorAll(".item")[4].checked){
+        dado = document.querySelectorAll(".item")[4].value;
+        window.localStorage.setItem("dadoestatistico" , dado);       
+    }
+    else{
+        dado = document.querySelectorAll(".item")[5].value;
+        window.localStorage.setItem("dadoestatistico" , dado);
+    }
+
+    //nome variavel e nome frequencia
+    dado = document.querySelectorAll(".dados")[0].value;
+    window.localStorage.setItem("nomevariavel" , dado);
+
+    dado = document.querySelectorAll(".dados")[1].value;
+    window.localStorage.setItem("nomefrequencia" , dado);
+
+    //valor medida separatriz
+    dado = document.querySelector("#valor").value;
+    window.localStorage.setItem("medidaseparatriz", dado);
+}
 
 function analisar() {
 
@@ -794,6 +871,34 @@ function distribuicaoUniforme(){
     console.log("O desvio padrão é de: " + dp);
     console.log("O coeficiente de variação é de: " + cv);   
 
+}
+
+function correlacaoEregressao(){
+    var variavelDependente = "preco apartamento", variavelndependente = "idade do imovel", 
+        var1 = [300000, 400000, 320000, 450000], var2= [10, 8, 9, 6], x, y, r = 0,
+        num = var1.length, somaX = 0, somaY = 0, somaXY = 0, somaX2 = 0, somaY2 = 0, a = 0, b = 0;
+
+    for (var i =0; i < num; i++){
+        somaX += var2[i];
+        somaY += var1[i];
+        somaXY += var1[i] * var2[i];
+        somaX2 += Math.pow(var2[i], 2);
+        somaY2 += Math.pow(var1[i], 2);
+    }
+            
+    //correlação
+    r = ((num * somaXY) - (somaX * somaY))/
+        (Math.sqrt(((num * somaX2) - (Math.pow(somaX, 2))) * ((num * somaY2) - (Math.pow(somaY, 2)) )));
+    
+    console.log("Coeficiente de correlação linear: " + r.toFixed(2));
+
+    //regressão
+    a  = ((num * somaXY) - (somaX * somaY))/
+         ((num * somaX2) - (Math.pow(somaX, 2)));
+
+    b = (somaY / 4) - a * (somaX / 4);
+
+    console.log("A equação da regrssão é: y = " + a.toFixed(2) + "x + " + b.toFixed(2) + ".");
 }
 
 
