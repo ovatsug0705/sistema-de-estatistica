@@ -1,76 +1,76 @@
-function medidaSeparatriz(separatriz){
-    if (separatriz == "quartil"){
+function medidaSeparatriz(separatriz) {
+    if (separatriz == "quartil") {
         document.querySelector("#valor").step = "25";
         document.querySelector("#valor").value = "0"
     }
-    else if(separatriz == "quintil"){
+    else if (separatriz == "quintil") {
         document.querySelector("#valor").step = "20";
         document.querySelector("#valor").value = "0";
     }
-    else if (separatriz == "decil"){
+    else if (separatriz == "decil") {
         document.querySelector("#valor").step = "10";
         document.querySelector("#valor").value = "0";
     }
-    else{
+    else {
         document.querySelector("#valor").step = "1";
         document.querySelector("#valor").value = "0";
     }
 }
 
-function habilitarOrdinal(variavel){
-    if (variavel == "ordinal"){
+function habilitarOrdinal(variavel) {
+    if (variavel == "ordinal") {
         document.querySelector(".ordinal").removeAttribute("disabled");
-        document.querySelector(".ordinal").setAttribute("required" , "true");
+        document.querySelector(".ordinal").setAttribute("required", "true");
     }
-    else{
-        document.querySelector(".ordinal").setAttribute("disabled" , "true");
+    else {
+        document.querySelector(".ordinal").setAttribute("disabled", "true");
         document.querySelector(".ordinal").removeAttribute("required");
         document.querySelector(".ordinal").value = "";
     }
 }
 
 function passardados() {
-    
+
     //dados para o processo
     var dado = document.querySelectorAll(".dados")[2].value;
-    window.localStorage.setItem("dados", dado); 
+    window.localStorage.setItem("dados", dado);
 
     //tipo da variavel
     if (document.querySelectorAll(".item")[0].checked) {
         dado = document.querySelectorAll(".item")[0].value;
-        window.localStorage.setItem("variavel" , dado);
+        window.localStorage.setItem("variavel", dado);
     }
     else if (document.querySelectorAll(".item")[1].checked) {
         dado = document.querySelectorAll(".item")[1].value;
-        window.localStorage.setItem("variavel" , dado);
+        window.localStorage.setItem("variavel", dado);
         dado = document.querySelector(".ordinal").value;
-        window.localStorage.setItem("ordinal" , dado);        
+        window.localStorage.setItem("ordinal", dado);
     }
     else if (document.querySelectorAll(".item")[2].checked) {
         dado = document.querySelectorAll(".item")[2].value;
-        window.localStorage.setItem("variavel" , dado);  
+        window.localStorage.setItem("variavel", dado);
     }
     else if (document.querySelectorAll(".item")[3].checked) {
         dado = document.querySelectorAll(".item")[3].value;
-        window.localStorage.setItem("variavel" , dado);      
+        window.localStorage.setItem("variavel", dado);
     }
 
     //censo ou estimação
-    if (document.querySelectorAll(".item")[4].checked){
+    if (document.querySelectorAll(".item")[4].checked) {
         dado = document.querySelectorAll(".item")[4].value;
-        window.localStorage.setItem("dadoestatistico" , dado);       
+        window.localStorage.setItem("dadoestatistico", dado);
     }
-    else{
+    else {
         dado = document.querySelectorAll(".item")[5].value;
-        window.localStorage.setItem("dadoestatistico" , dado);
+        window.localStorage.setItem("dadoestatistico", dado);
     }
 
     //nome variavel e nome frequencia
     dado = document.querySelectorAll(".dados")[0].value;
-    window.localStorage.setItem("nomevariavel" , dado);
+    window.localStorage.setItem("nomevariavel", dado);
 
     dado = document.querySelectorAll(".dados")[1].value;
-    window.localStorage.setItem("nomefrequencia" , dado);
+    window.localStorage.setItem("nomefrequencia", dado);
 
     //valor medida separatriz
     dado = document.querySelector("#valor").value;
@@ -628,7 +628,11 @@ function saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, co
         p7.appendChild(text);
     }
 
-    //gerar graficos
+    gerarGraficos(tamanho, variavel, tabela)
+}
+
+//gerar graficos
+function gerarGraficos(tamanho, variavel, tabela) {
     var label = [], cores = [], valores = [], tipo, espaco = .9;
 
     for (var i = 1; i <= tamanho; i++) {
@@ -638,7 +642,26 @@ function saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, co
     }
 
     if (variavel == "ordinal" || variavel == "nominal") {
-        tipo = "pie";
+        tipo = "pie"
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+            type: "pie",
+            data: {
+                labels: label,
+                datasets: [{
+                    label: variavel,
+                    data: valores,
+                    backgroundColor: cores,
+                }],
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Gráfico'
+                },
+
+            }
+        });
     }
     else if (variavel == "discreta") {
         tipo = "bar";
@@ -648,38 +671,40 @@ function saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, co
         espaco = 1.25;
     }
 
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-        type: tipo,
-        data: {
-            labels: label,
-            datasets: [{
-                label: variavel,
-                data: valores,
-                backgroundColor: cores,
-            }],
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    },
+    if (tipo != "pie") {
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+            type: tipo,
+            data: {
+                labels: label,
+                datasets: [{
+                    label: variavel,
+                    data: valores,
+                    backgroundColor: cores,
                 }],
-
-                xAxes: [{
-                    categotyPercentage: espaco,
-                    barPercentage: espaco,
-                }]
             },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        },
+                    }],
 
-            title: {
-                display: true,
-                text: 'Gráfico'
-            },
+                    xAxes: [{
+                        categotyPercentage: espaco,
+                        barPercentage: espaco,
+                    }]
+                },
 
-        }
-    });
+                title: {
+                    display: true,
+                    text: 'Gráfico'
+                },
+
+            }
+        });
+    }
 
 }
 
@@ -715,7 +740,7 @@ function fatorial(num) {
 
 //distribuição normal
 function distribuicaoNormal() {
-    
+
     var valores = [], cont = 0, media, dp, tipo, result;
 
     // tipo = "menor";
@@ -726,39 +751,39 @@ function distribuicaoNormal() {
     media = 90;
     dp = 5;
 
-    if (tipo == "entre"){
-        for(var i = 0; i < 2; i++){
+    if (tipo == "entre") {
+        for (var i = 0; i < 2; i++) {
             valores.push(buscaTabela(num[i], media, dp));
-            if(num[i] > media){
+            if (num[i] > media) {
                 cont++;
             }
         }
 
-        if(cont != 1){
+        if (cont != 1) {
             result = (Math.abs(valores[0] - valores[1])) * 100;
         }
-        else{
-            result = (valores[0] + valores[1]) * 100;            
+        else {
+            result = (valores[0] + valores[1]) * 100;
         }
     }
-    else if(tipo == "maior"){
+    else if (tipo == "maior") {
         valores.push(buscaTabela(num[0], media, dp));
 
-        if(num[0] > media){
+        if (num[0] > media) {
             result = (Math.abs(0.5 - valores[0])) * 100;
         }
-        else{
-            result = (valores[0] + 0.5) * 100;            
+        else {
+            result = (valores[0] + 0.5) * 100;
         }
     }
-    else if(tipo == "menor"){
+    else if (tipo == "menor") {
         valores.push(buscaTabela(num[0], media, dp));
 
-        if(num[0] > media){
-            result = (valores[0] + 0.5) * 100;                
+        if (num[0] > media) {
+            result = (valores[0] + 0.5) * 100;
         }
-        else{
-            result = (Math.abs(0.5 - valores[0])) * 100;     
+        else {
+            result = (Math.abs(0.5 - valores[0])) * 100;
         }
     }
 
@@ -766,7 +791,7 @@ function distribuicaoNormal() {
 
 }
 
-function buscaTabela(num, media, dp){
+function buscaTabela(num, media, dp) {
     var tabelaCurvaNormal = [
         ["z", 0.0000, 1.0000, 2.0000, 3.0000, 4.0000, 5.0000, 6.0000, 7.0000, 8.0000, 9.0000],
         [0.0, 0.0000, 0.0040, 0.0080, 0.0120, 0.0160, 0.0199, 0.0239, 0.0279, 0.0319, 0.0359],
@@ -812,7 +837,7 @@ function buscaTabela(num, media, dp){
     ];
 
     var condicao = true, cont = 0, x, y, z;
-    
+
     z = Math.abs(((num - media) / dp).toFixed(2));
 
     num = z.toString();
@@ -828,7 +853,7 @@ function buscaTabela(num, media, dp){
             cont = 0;
         }
     }
-    
+
     while (!condicao) {
         cont++;
         if (x == tabelaCurvaNormal[cont][0]) {
@@ -842,63 +867,145 @@ function buscaTabela(num, media, dp){
 }
 
 //distribuicao uniforme
-function distribuicaoUniforme(){
+function distribuicaoUniforme() {
     var media, dp, cv, probabilidade, tipo, min, max, intervalo = [1000, 100];
 
     min = 800;
     max = 1800;
     tipo = "entre"
 
-    media = (max + min )/2
+    media = (max + min) / 2
     console.log(media);
 
-    dp = Math.sqrt((Math.pow(max - min , 2))/12);
+    dp = Math.sqrt((Math.pow(max - min, 2)) / 12);
 
     cv = (dp / media) * 100;
 
-    if (tipo == "menor"){
+    if (tipo == "menor") {
         probabilidade = (1 / (max - min)) * (intervalo[0] - min);
     }
-    else if (tipo == "maior"){
+    else if (tipo == "maior") {
         probabilidade = (1 / (max - min)) * (max - intervalo[0]);
     }
-    else{
-        probabilidade = (1 / (max - min)) * Math.abs(intervalo[0] - intervalo[1]);        
+    else {
+        probabilidade = (1 / (max - min)) * Math.abs(intervalo[0] - intervalo[1]);
     }
 
     console.log("A probabilidadde segundo a Distribuição Uniforme é de: " + probabilidade * 100);
     console.log("A media é de: " + media);
     console.log("O desvio padrão é de: " + dp);
-    console.log("O coeficiente de variação é de: " + cv);   
+    console.log("O coeficiente de variação é de: " + cv);
 
 }
 
-function correlacaoEregressao(){
-    var variavelDependente = "preco apartamento", variavelndependente = "idade do imovel", 
-        var1 = [300000, 400000, 320000, 450000], var2= [10, 8, 9, 6], x, y, r = 0,
-        num = var1.length, somaX = 0, somaY = 0, somaXY = 0, somaX2 = 0, somaY2 = 0, a = 0, b = 0;
+function correlacaoEregressao() {
+    var variavelDependente = "preco apartamento", variavelndependente = "idade do imovel",
+        varx = [1,2,3,4,5,6,7,8,9], vary = [5,12,16,22,34,38,41,45,50], x, y, r = 0,
+        somaX = 0, somaY = 0, somaXY = 0, somaX2 = 0, somaY2 = 0, a = 0, b = 0,
+        scatter = [], line = [], maior;
 
-    for (var i =0; i < num; i++){
-        somaX += var2[i];
-        somaY += var1[i];
-        somaXY += var1[i] * var2[i];
-        somaX2 += Math.pow(var2[i], 2);
-        somaY2 += Math.pow(var1[i], 2);
+    for (var i = 0; i < vary.length; i++) {
+        somaX += varx[i];
+        somaY += vary[i];
+        somaXY += vary[i] * varx[i];
+        somaX2 += Math.pow(varx[i], 2);
+        somaY2 += Math.pow(vary[i], 2);
     }
-            
+
     //correlação
-    r = ((num * somaXY) - (somaX * somaY))/
-        (Math.sqrt(((num * somaX2) - (Math.pow(somaX, 2))) * ((num * somaY2) - (Math.pow(somaY, 2)) )));
-    
+    r = ((vary.length * somaXY) - (somaX * somaY)) /
+        (Math.sqrt(((vary.length * somaX2) - (Math.pow(somaX, 2))) * ((vary.length * somaY2) - (Math.pow(somaY, 2)))));
+
+    if (Math.abs(r) == 0){
+        console.log("Não existe relação");
+    }
+    else if (Math.abs(r) < 0.3){
+        console.log("A relação é fraca.");        
+    }
+    else if(Math.abs(r) < 0.6) {
+        console.log("A relação é média");        
+    }
+    else if (Math.abs(r) < 1){
+        console.log("A relação é forte");        
+    }
+    else{
+        console.log("A relação é perfeita");                
+    }
+
     console.log("Coeficiente de correlação linear: " + r.toFixed(2));
 
     //regressão
-    a  = ((num * somaXY) - (somaX * somaY))/
-         ((num * somaX2) - (Math.pow(somaX, 2)));
+    a = ((vary.length * somaXY) - (somaX * somaY)) /
+        ((vary.length * somaX2) - (Math.pow(somaX, 2)));
 
-    b = (somaY / 4) - a * (somaX / 4);
+    b = (somaY / vary.length) - a * (somaX / vary.length);
 
     console.log("A equação da regrssão é: y = " + a.toFixed(2) + "x + " + b.toFixed(2) + ".");
+
+    //gerando dados do gráfico
+    if(r < 0){
+        x = 0;
+        y = b;
+        line.push({ x , y});
+
+        x = (-1 * b)/a;
+        y = 0;        
+        line.push({ x , y}); 
+        console.log(line)
+    }
+    else{
+        maior = vary[0];
+        for (var i = 1; i < vary.length; i++){
+            if (vary[i] > maior){
+                maior = vary[i];
+            }
+        }
+
+        x = (-1 * b)/a;              
+        y = 0;        
+        line.push({ x , y});
+
+        x = (maior - b)/a;          
+        y = maior;        
+        line.push({ x , y}); 
+        console.log(line)
+    }
+
+    for (var i = 0; i < vary.length; i++){
+        scatter.push({ x: varx[i] , y: vary[i] });
+    }
+    console.log(scatter);   
+
+
+    var ctx = document.getElementById("myChart2");
+    var mixedChart = new Chart(ctx, {
+        type: 'scatter',
+        data: {
+            datasets: [{
+                label: 'scatter',
+                data: scatter,
+                backgroundColor: "rgba(255,0,0,1)"
+            },
+            {
+                type: 'line',
+                label: 'Line Dataset',
+                data: line,
+                showLine: true,
+                backgroundColor: "rgba(255,255,255,0)"
+            },
+            ]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    
+                }],
+                xAxes: [{
+                    
+                }]
+            }
+        }
+    });
 }
 
 
