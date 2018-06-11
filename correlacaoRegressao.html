@@ -5,8 +5,8 @@
         <title>Sistema de Estatística</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- <link rel="stylesheet" type="text/css" href="main.css" /> -->
-        <script src="analise.js"></script>
-        <script src="probabilidade.js"></script>      
+        <script src="correlacaoRegressao.js"></script>
+        <script src="chart.js"></script>
     </head>
     <body>
 
@@ -27,6 +27,23 @@
         </ul>
     </nav>
 
-    <button onclick="distribuicaoNormal()">teste</button>
+    <div class="hitorico">
+        <form onsubmit="passarDados()" action="resultados2.html">
+            <label for="nomevar1">Nome da variável Independente(X)</label>
+            <input type="text" class="dados" id="nomevar1" placeholder="Name"/>
+
+            <label for="nomevar2">Nome da variável Dependente(Y)</label>
+            <input type="text" class="dados" id="nomevar2" placeholder="Name"/>
+
+            <label for="hist1">Histórico da variável Independente(X)</label>
+            <input type="text" class="dados" id="hist1" placeholder="Ex: 30;20;10"/>
+
+            <label for="hist2">Histórico da variável Dependente(Y)</label>
+            <input type="text" class="dados" id="hist2" placeholder="Ex: 30;20;10"/>
+
+            <input type="submit" value="Calcular"/>
+        </form>
+    </div>
+
     </body>
 </html>

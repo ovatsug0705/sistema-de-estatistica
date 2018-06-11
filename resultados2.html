@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <link rel="stylesheet" type="text/css" href="main.css" /> -->
     <title>Sistema de Estatística</title>
-    <script src="analise.js"></script>
+    <script src="correlacaoRegressao.js"></script>
     <script src="chart.js"></script>
 </head>
-<body onload="analisar()">
+<body onload="correlacaoRegressao(1)">
         <h1>ANALeasy</h1>
         <nav>
             <ul>
@@ -29,12 +29,20 @@
 
             </div>
 
-            <div class="container2">
-
-            </div>
-
             <div class="canvas" style="width: 600px;">
                 <canvas id="myChart"></canvas>
+            </div>
+
+            <div class="container2">
+                <input type="radio" name="variavel" id="opcao1" value="x" class="item"  checked/>            
+                <label for="opcao1">Variavel Independente(X)</label>
+                <input type="radio" name="variavel" id="opcao2" value="y" class="item" />            
+                <label for="opcao2">Variavel Dependente(Y)</label>
+
+                <label for="var">Dados</label>
+                <input type="text" class="dados" id="var" placeholder="Ex: 30;20;10"/>
+    
+                <input type="button" value="Calcular" onclick="correlacaoRegressao(2)"/>
             </div>
         </main>
 </body>
