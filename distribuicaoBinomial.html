@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- <link rel="stylesheet" type="text/css" href="main.css" /> -->
+    <title>Sistema de Estatística</title>
+    <script src="probabilidade.js"></script>
+    <script src="chart.js"></script>
+</head>
+<body>
+    <h1><a href="index.html">Stateasy</a></h1>
+    <nav>
+        <ul>
+            <li><a href="descritiva.html">Estatística descritiva</a></li>
+            <li><a href="correlacaoRegressao.html">Correlação e Regressão</a></li>
+            <li>
+                <span>Probabilidade</span>                
+                <ul>
+                <li><a href="distribuicaoNormal.html">Distribuição Normal</a></li>
+                <li><a href="distribuicaoUniforme.html">Distribuição Uniforme</a></li>
+                <li><a href="distribuicaoBinomial.html">Distribuição Binomial</a></li>                   
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <main class="main">
+        <h1 class="title">Distribuição Binomial</h1>
+        <div class="input">
+            <label for="n">Tamnho da Amostra(n)</label>
+            <input type="text" class="dados" id="n"/>
+            <label for="k">Evento(k)</label>
+            <input type="text" class="dados" id="k"/>
+            <label for="p">Sucesso(p)</label>
+            <input type="text" class="dados" id="p"/>
+            <label for="q">Fracasso(q)</label>
+            <input type="text" class="dados" id="q"/>
+
+            <button onclick="distribuicaoBinomial()">Calcular</button>
+        </div>
+        <div>
+            <p class="result"></p>                            
+        </div>
+    </main>
+</body>
+</html>

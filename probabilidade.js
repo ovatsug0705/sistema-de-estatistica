@@ -1,11 +1,19 @@
 //distribuição binomial
 function distribuicaoBinomial() {
-    var n, p, q, result = 0, k = [0, 1, 2];
+    var n, p, q, result = 0, k = [];
 
-    n = 30;
-    q = 0.9;
-    p = 0.1;
-
+    n = document.querySelectorAll(".dados")[0].value;
+    k = document.querySelectorAll(".dados")[1].value.split(";");    
+    p = document.querySelectorAll(".dados")[2].value;
+    q = document.querySelectorAll(".dados")[3].value;
+    
+    n = Number(n);
+    p = Number(p);
+    q = Number(q); 
+    for (var i = 0; i < k.length; i++){
+        k[i] = Number(k[i]);
+    }
+    
     for (var i = 0; i < k.length; i++) {
         if (k[i] != 0) {
             result += (fatorial(n) / (fatorial(k[i]) * fatorial(n - k[i]))) * (Math.pow(p, k[i]) * (Math.pow(q, n - k[i]))) * 100;
@@ -14,7 +22,9 @@ function distribuicaoBinomial() {
             result += (Math.pow(q, n)) * 100;
         }
     }
-    console.log("A probabilidade segundo a Distribuição Binomial é: " + result.toFixed(2));
+
+    var paragraph = document.querySelector(".result")
+    paragraph.innerHTML = "A probabilidade segundo a Distribuição Binomial é: " + result.toFixed(2);
 }
 
 function fatorial(num) {
@@ -33,13 +43,25 @@ function distribuicaoNormal() {
 
     var valores = [], cont = 0, media, dp, tipo, result;
 
-    tipo = "menor";
-    // tipo = "maior";
-    // tipo = "entre";
+    if (document.querySelectorAll(".item")[0].checked) {
+       tipo = document.querySelectorAll(".item")[0].value;
+    }
+    else if (document.querySelectorAll(".item")[1].checked) {
+       tipo = document.querySelectorAll(".item")[1].value;
+    }
+    else{
+       tipo = document.querySelectorAll(".item")[2].value;
+    }
 
-    var num = [20];
-    media =  4.18;
-    dp = 3.07;
+    media = document.querySelectorAll(".dados")[0].value;
+    dp = document.querySelectorAll(".dados")[1].value;    
+    num = document.querySelectorAll(".dados")[2].value.split(";");
+
+    media = Number(media);
+    dp = Number(dp);
+    for (var i = 0; i < num.length; i++){
+      num[i] = Number(num[i]);
+    }
 
     if (tipo == "entre") {
         for (var i = 0; i < 2; i++) {
@@ -86,8 +108,8 @@ function distribuicaoNormal() {
         }
     }
 
-    console.log("A probabilidade segundo a Distribuição Normal é de: " + result + "%.");
-
+    var p = document.querySelector(".result");
+    p.innerHTML = "A probabilidade segundo a Distribuição Normal é de: " + result + "%.";
 }
 
 function buscaTabela(num, media, dp) {
@@ -172,13 +194,27 @@ function buscaTabela(num, media, dp) {
 
 //distribuicao uniforme
 function distribuicaoUniforme() {
-    var media, dp, cv, probabilidade, tipo, min, max, intervalo = [1000, 100];
+    var media, dp, cv, probabilidade, tipo, min, max, intervalo = [];
 
-    min = 800;
-    max = 1800;
-    tipo = "entre"
-    // tipo = "maior"
-    // tipo = "menor"
+    if (document.querySelectorAll(".item")[0].checked) {
+        tipo = document.querySelectorAll(".item")[0].value;
+     }
+     else if (document.querySelectorAll(".item")[1].checked) {
+        tipo = document.querySelectorAll(".item")[1].value;
+     }
+     else{
+        tipo = document.querySelectorAll(".item")[2].value;
+     }
+ 
+     max = document.querySelectorAll(".dados")[0].value;
+     min = document.querySelectorAll(".dados")[1].value;    
+     intervalo = document.querySelectorAll(".dados")[2].value.split(";");
+ 
+     max = Number(max);
+     min = Number(min);
+     for (var i = 0; i < intervalo.length; i++){
+       intervalo[i] = Number(intervalo[i]);
+     }
 
     media = (max + min) / 2
     console.log(media);
@@ -197,9 +233,15 @@ function distribuicaoUniforme() {
         probabilidade = (1 / (max - min)) * Math.abs(intervalo[0] - intervalo[1]);
     }
 
-    console.log("A probabilidadde segundo a Distribuição Uniforme é de: " + probabilidade * 100);
-    console.log("A media é de: " + media);
-    console.log("O desvio padrão é de: " + dp);
-    console.log("O coeficiente de variação é de: " + cv);
+    var p = document.querySelectorAll(".result")[0]
+    p.innerHTML = "A probabilidadde segundo a Distribuição Uniforme é de: " + probabilidade * 100;
 
+    var p = document.querySelectorAll(".result")[1]
+    p.innerHTML = "A media é de: " + media;
+
+    var p = document.querySelectorAll(".result")[2]
+    p.innerHTML = "O desvio padrão é de: " + dp;
+
+    var p = document.querySelectorAll(".result")[3]
+    p.innerHTML = "O coeficiente de variação é de: " + cv;
 }

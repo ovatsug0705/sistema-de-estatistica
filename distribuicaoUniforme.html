@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- <link rel="stylesheet" type="text/css" href="main.css" /> -->
+    <title>Sistema de Estatística</title>
+    <script src="probabilidade.js"></script>
+    <script src="chart.js"></script>
+</head>
+<body>
+    <h1><a href="index.html">Stateasy</a></h1>
+    <nav>
+        <ul>
+            <li><a href="descritiva.html">Estatística descritiva</a></li>
+            <li><a href="correlacaoRegressao.html">Correlação e Regressão</a></li>
+            <li>
+                <span>Probabilidade</span>                
+                <ul>
+                <li><a href="distribuicaoNormal.html">Distribuição Normal</a></li>
+                <li><a href="distribuicaoUniforme.html">Distribuição Uniforme</a></li>
+                <li><a href="distribuicaoBinomial.html">Distribuição Binomial</a></li>                   
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <main class="main">
+        <h1 class="title">Distribuição Uniforme</h1>
+        <div class="input">
+            <label for="max">Ponto Máximo</label>
+            <input type="text" class="dados" id="max"/>
+            <label for="min">Ponto Mínimo</label>
+            <input type="text" class="dados" id="min"/>
+
+            <h2>Intervalo da Análise</h2>
+            <input type="radio" class="item" id="menor que" name="option" value="menor" checked/>
+            <label for="menor que">Menor que</label>
+            <input type="radio" class="item" id="entre" name="option"  value="entre"/>
+            <label for="entre">Entre</label>
+            <input type="radio" class="item" id="maior que" name="option"  value="maior"/>
+            <label for="maior que">Maior que</label>
+
+            <label for="dados">Dados</label>
+            <input type="text" class="dados" id="dados"/>
+
+            <button onclick="distribuicaoUniforme()">Calcular</button>
+        </div>
+        <div>
+            <p class="result"></p>
+            <p class="result"></p>
+            <p class="result"></p>
+            <p class="result"></p>                            
+        </div>
+    </main>
+</body>
+</html>
