@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+/* estilização geral */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #fefefe;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* estilização do cabeçalho*/
+.header {
+    width: 100%;
+    height: auto;
+    background: #039BE5;
+}
+
+.title {
+    padding: 20px;
+    margin: 0;
+}
+
+.title__link {
+    color: #ffffff;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 1px;
+}
+
+.title__span {
+    color: #01579B;
+}
+
+/* estilização do menu */
+.menu {
+    width: 100%;
+    background: #039BE5;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.mene::after {
+    content: "";
+    width: 100%;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+}
+
+
+.menu__list {
+    list-style: none;
+    display: inline-block; 
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.menu__probability {
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;    
+}
+
+.menu__probability:hover {
+    cursor: pointer;  
+    background: #ffffff; 
+    color: #01579B;
+}
+
+.menu__list--probability {
+    list-style: none;   
+}
+
+.menu__list-item {
+    display: inline-block;
+    position: relative;
+    padding: 10px 20px;
+}
+
+.menu__list-item:hover {
+    background: #ffffff;
+}
+
+.menu__list-item:hover .menu__link {
+    color: #01579B;
+}
+
+.menu__link {
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+}
+
+.menu__list--probability {
+    position: absolute;
+    background: #039BE5;
+    visibility: hidden;
+}
+
+.menu__list-item--probability {
+    float: none;
+}
+
+/*estilização do container principal*/
+.main {
+    width: 85%;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    background: #ffffff;
+    margin: 0 auto;     
+}
+
+/* estilização estatistica descritiva */
+.form {
+    padding: 25px 0;
+}
+
+.form__var {
+    width: 95%;
+    height: auto;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
+
+.form__title {
+    margin: 0;
+    color: #01579B;
+    padding: 10px;
+    font-family: "Roboto", sans-serif; 
+}
+
+/* .form__item-var {
+    display: none;
+}
+
+.form__label-var::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border: 3px solid #01579B;
+    border-radius: 100%; 
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.form__item-var:checked + label {
+    background-color: #039BE5;
+    transition: all .5s;
+} */

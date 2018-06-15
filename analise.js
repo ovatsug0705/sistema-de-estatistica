@@ -36,32 +36,32 @@ function passardados() {
     window.localStorage.setItem("dados", dado);
 
     //tipo da variavel
-    if (document.querySelectorAll(".item")[0].checked) {
-        dado = document.querySelectorAll(".item")[0].value;
+    if (document.querySelectorAll(".form__var-item")[0].checked) {
+        dado = document.querySelectorAll(".form__var-item")[0].value;
         window.localStorage.setItem("variavel", dado);
     }
-    else if (document.querySelectorAll(".item")[1].checked) {
-        dado = document.querySelectorAll(".item")[1].value;
+    else if (document.querySelectorAll(".form__var-item")[1].checked) {
+        dado = document.querySelectorAll(".form__var-item")[1].value;
         window.localStorage.setItem("variavel", dado);
         dado = document.querySelector(".ordinal").value;
         window.localStorage.setItem("ordinal", dado);
     }
-    else if (document.querySelectorAll(".item")[2].checked) {
-        dado = document.querySelectorAll(".item")[2].value;
+    else if (document.querySelectorAll(".form__var-item")[2].checked) {
+        dado = document.querySelectorAll(".form__var-item")[2].value;
         window.localStorage.setItem("variavel", dado);
     }
-    else if (document.querySelectorAll(".item")[3].checked) {
-        dado = document.querySelectorAll(".item")[3].value;
+    else if (document.querySelectorAll(".form__var-item")[3].checked) {
+        dado = document.querySelectorAll(".form__var-item")[3].value;
         window.localStorage.setItem("variavel", dado);
     }
 
     //censo ou estimação
-    if (document.querySelectorAll(".item")[4].checked) {
-        dado = document.querySelectorAll(".item")[4].value;
+    if (document.querySelectorAll(".form__var-item")[4].checked) {
+        dado = document.querySelectorAll(".form__var-item")[4].value;
         window.localStorage.setItem("dadoestatistico", dado);
     }
     else {
-        dado = document.querySelectorAll(".item")[5].value;
+        dado = document.querySelectorAll(".form__var-item")[5].value;
         window.localStorage.setItem("dadoestatistico", dado);
     }
 

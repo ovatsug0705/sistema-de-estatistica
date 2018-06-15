@@ -4,27 +4,29 @@
         <meta charset="utf-8" />
         <title>Sistema de Estatística</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- <link rel="stylesheet" type="text/css" href="main.css" /> -->
+        <link rel="stylesheet" type="text/css" href="main.css" />
         <script src="analise.js"></script>
         <script src="probabilidade.js"></script>      
     </head>
     <body>
 
-    <h1 class="title1"><a href="index.html">Stateasy</a></h1>
-
-    <nav>
-        <ul>
-            <li><a href="descritiva.html">Estatística descritiva</a></li>
-            <li><a href="correlacaoRegressao.html">Correlação e Regressão</a></li>
-            <li>
-                <span>Probabilidade</span>                
-                <ul>
-                <li><a href="distribuicaoNormal.html">Distribuição Normal</a></li>
-                <li><a href="distribuicaoUniforme.html">Distribuição Uniforme</a></li>
-                <li><a href="distribuicaoBinomial.html">Distribuição Binomial</a></li>                   
+    <header class="header">
+        <h1 class="title"><a class="title__link" href="index.html"><span class="title__span">stat</span>easy</a></h1>
+    </header>
+    <nav class="menu">
+        <ul class="menu__list">
+            <li class="menu__list-item"><a class="menu__link" class="menu__link" href="descritiva.html">Estatística descritiva</a></li>
+            <li class="menu__list-item"><a class="menu__link" href="correlacaoRegressao.html">Correlação e Regressão</a></li>
+            <li class="menu__list-item menu__probability" >
+                <span>Probabilidade</span>
+                <ul class="menu__list--probability">
+                <li class="menu__list-item--probability"><a class="menu__link" href="distribuicaoNormal.html">Distribuição Normal</a></li>
+                <li class="menu__list-item--probability"><a class="menu__link" href="distribuicaoUniforme.html">Distribuição Uniforme</a></li>
+                <li class="menu__list-item--probability"><a class="menu__link" href="distribuicaoBinomial.html">Distribuição Binomial</a></li>                   
                 </ul>
             </li>
         </ul>
     </nav>
+    
     </body>
 </html>
