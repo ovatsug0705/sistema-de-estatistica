@@ -1,14 +1,14 @@
 function passarDados(){
-    var dado = document.querySelectorAll(".dados")[0].value;
+    var dado = document.querySelectorAll(".dados")[1].value;
     window.localStorage.setItem("nomevar1", dado);
 
-    dado = document.querySelectorAll(".dados")[1].value;
+    dado = document.querySelectorAll(".dados")[3].value;
     window.localStorage.setItem("nomevar2", dado);
 
-    dado = document.querySelectorAll(".dados")[2].value;
+    dado = document.querySelectorAll(".dados")[0].value;
     window.localStorage.setItem("hist1", dado);
 
-    dado = document.querySelectorAll(".dados")[3].value;
+    dado = document.querySelectorAll(".dados")[2].value;
     window.localStorage.setItem("hist2", dado);
 }
 
@@ -22,7 +22,10 @@ function correlacaoRegressao(tipo) {
     variavelDependente = window.localStorage.getItem("nomevar2");
     varx = window.localStorage.getItem("hist1").split(";");
     vary = window.localStorage.getItem("hist2").split(";");
+    console.log(vary);
+    console.log(varx);
     
+
     for (var i = 0; i < vary.length; i++) {
         varx[i] = Number(varx[i]);
         vary[i] = Number(vary[i]);
@@ -32,6 +35,7 @@ function correlacaoRegressao(tipo) {
         somaX2 += Math.pow(varx[i], 2);
         somaY2 += Math.pow(vary[i], 2);
     } 
+    
     
     //correlação
     r = ((vary.length * somaXY) - (somaX * somaY)) /

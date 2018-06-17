@@ -494,9 +494,9 @@ function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida, tipo)
     else if (processo == "amostra") {
         desvioPadrao = Math.sqrt(desvioPadrao / (somaFrequencia - 1));
     }
-    desvioPadrao = desvioPadrao.toFixed(2);
+    // desvioPadrao = desvioPadrao.toFixed(2);
     coeficienteDeVariacao = (desvioPadrao / media) * 100;
-    coeficienteDeVariacao = coeficienteDeVariacao.toFixed(2);
+    coeficienteDeVariacao = coeficienteDeVariacao.toFixed(2);    
     console.log("O desvio padrão é de: " + desvioPadrao);
     console.log("O coeficiente de variação é de: " + coeficienteDeVariacao + "%");
 

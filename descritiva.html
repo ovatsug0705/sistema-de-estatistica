@@ -12,7 +12,7 @@
 <body>
 
     <header class="header">
-        <h1 class="title">
+        <h1 class="main__title">
             <a class="title__link" href="index.html">
                 <span class="title__span">stat</span>easy
             </a>
@@ -45,58 +45,88 @@
 
     <main class="main">
         <form onsubmit="passardados()" action="resultados.html" class="form">
-            <div class="form__var">
-                <h2 class="form__title">Tipo de Variável</h2>
-                <input type="radio" name="variavel" id="opcao1" value="nominal" class="form__item-var" onclick="habilitarOrdinal(this.value)" checked/>
-                <label class="form__label-var" for="opcao1">Qualitativa Nominal</label>
-                <input type="radio" name="variavel" id="opcao2" value="ordinal" class="form__item-var" onclick="habilitarOrdinal(this.value)" />
-                <label class="form__label-var" for="opcao2">Qualitativa Ordinal</label>
-                <input type="radio" name="variavel" id="opcao3" value="discreta" class="form__item-var" onclick="habilitarOrdinal(this.value)" />
-                <label class="form__label-var" for="opcao3">Quantitativa Discreta</label>
-                <input type="radio" name="variavel" id="opcao4" value="continua" class="form__item-var" onclick="habilitarOrdinal(this.value)" />
-                <label class="form__label-var" for="opcao4">Quantitativa Contínua</label>
+            <div class="var_input">
+                <h2 class="title">Tipo de Variável</h2>
+                <div class="container">
+                    <div class="radio__content">
+                        <input type="radio" name="variavel" id="opcao1" value="nominal" class="radio__button" onclick="habilitarOrdinal(this.value)"
+                            checked/>
+                        <label class="radio__label" for="opcao1">Qualitativa Nominal</label>
+                    </div>
+                    <div class="radio__content">
+                        <input type="radio" name="variavel" id="opcao2" value="ordinal" class="radio__button" onclick="habilitarOrdinal(this.value)"/>
+                        <label class="radio__label" for="opcao2">Qualitativa Ordinal</label>
+                    </div>
+                    <div class="radio__content">
+                        <input type="radio" name="variavel" id="opcao3" value="discreta" class="radio__button" onclick="habilitarOrdinal(this.value)"/>
+                        <label class="radio__label" for="opcao3">Quantitativa Discreta</label>
+                    </div>
+                    <div class="radio__content">
+                        <input type="radio" name="variavel" id="opcao4" value="continua" class="radio__button" onclick="habilitarOrdinal(this.value)"/>
+                        <label class="radio__label" for="opcao4">Quantitativa Contínua</label>
+                    </div>
+                </div>
             </div>
 
-            <div class="entradaOrdinal">
-                <h2 class="title2" title="somente se a variável for ordinal">Ordenação das variáveis ordinais</h2>
-                <input type="text" id="ord" name="ordinal" class="ordinal" placeholder="EX:bom;regular;pessimo" disabled>
+            <div class="ordinal_input">
+                <h2 class="title">Ordenação das variáveis ordinais</h2>
+                <input type="text" name="ordinal" class="text__input ordinal" placeholder="EX: bom; regular; pessimo" title="Somente se a variável for qualitativa ordinal" disabled>
             </div>
 
-            <div class="opcao">
-                <h2 class="title2">Processo Estatístico</h2>
-                <input type="radio" name="processo" id="processo1" value="populacao" class="item" checked/>
-                <label for="processo1">Censo(População)</label>
-                <input type="radio" name="processo" id="processo2" value="amostra" class="item" />
-                <label for="processo2">Estimação(Amostra)</label>
+            <div class="estatistic_process">
+                <h2 class="title">Processo Estatístico</h2>
+                <div class="container">
+                    <div class="radio__content">
+                        <input type="radio" name="processo" id="processo1" value="populacao" class="radio__button" checked/>
+                        <label class="radio__label" for="processo1">Censo (População)</label>
+                    </div>
+                    <div class="radio__content">
+                        <input type="radio" name="processo" id="processo2" value="amostra" class="radio__button" />
+                        <label class="radio__label" for="processo2">Amostra (Estimação)</label>
+                    </div>
+                </div>
             </div>
 
-            <div class="name">
-                <h2 class="title2">Nome da Variável</h2>
-                <input type="text" class="dados" required>
-                <h2 class="title2">Nome da Frequência</h2>
-                <input type="text" class="dados" required>
+            <div class="names_input">
+                <h2 class="title">Nome da Variável</h2>
+                <input type="text" class="dados text__input" placeholder="EX: Número de vendas" title="Dê um nome a sua variavel" required>
+                <h2 class="title">Nome da Frequência</h2>
+                <input type="text" class="dados text__input" placeholder="EX: Quantidade de Representantes" title="Dê um nome a sua frequência" required>
             </div>
 
-            <div class="opcao">
-                <h2 class="tilte2">Medidas Separatrizes</h2>
-                <input type="radio" name="separatriz" id="q" value="quartil" class="item" onclick="medidaSeparatriz(this.value)" checked/>
-                <label for="q">Quartil</label>
-                <input type="radio" name="separatriz" id="k" value="quintil" class="item" onclick="medidaSeparatriz(this.value)" />
-                <label for="k">Quintil</label>
-                <input type="radio" name="separatriz" id="d" value="decil" class="item" onclick="medidaSeparatriz(this.value)" />
-                <label for="d">Decil</label>
-                <input type="radio" name="separatriz" id="p" value="porcentil" class="item" onclick="medidaSeparatriz(this.value)" />
-                <label for="p">Porcentil</label>
-                <label for="valor">Valor</label>
-                <input type="number" step="25" min="0" max="100" title="valor da medida separatriz" id="valor" value="0">
+            <div class="medidas_separatrizes">
+                <h2 class="title">Medidas Separatrizes</h2>
+                <div class="container">
+                    <div class="radio__content">
+                        <input type="radio" name="separatriz" id="q" value="quartil" class="radio__button" onclick="medidaSeparatriz(this.value)" checked/>
+                        <label class="radio__label" for="q">Quartil</label>
+                    </div>
+                    <div class="radio__content">
+                        <input type="radio" name="separatriz" id="k" value="quintil" class="radio__button" onclick="medidaSeparatriz(this.value)"/>
+                        <label class="radio__label" for="k">Quintil</label>
+                    </div>
+                    <div class="radio__content">
+                        <input type="radio" name="separatriz" id="d" value="decil" class="radio__button" onclick="medidaSeparatriz(this.value)" />
+                        <label class="radio__label" for="d">Decil</label>
+                    </div>
+                    <div class="radio__content">
+                        <input type="radio" name="separatriz" id="p" value="porcentil" class="radio__button" 
+                        onclick="medidaSeparatriz(this.value)"/>
+                        <label class="radio__label" for="p">Porcentil</label>
+                    </div>
+                </div>
+                <div class="medidas_separatrizes__container">
+                    <label for="valor" class="medidas_separatrizes__valor">Valor:</label>
+                    <input type="number" step="25" min="0" max="100" title="Valor da medida separatriz" id="valor" class="medidas_separatrizes__input"/>
+                </div>
             </div>
 
-            <div class="entradaDados">
-                <h2 class="title2" title="separar dados por ponto e vírgula">Entrada de dados</h2>
-                <textarea name="entrada" cols="40" rows="5" class="dados" placeholder="EX:5;3;9;5" required></textarea>
+            <div class="data_input">
+                <h2 class="title" title="separar dados por ponto e vírgula">Entrada de dados</h2>
+                <input type="text" name="entrada" class="text__input data" placeholder="EX: 20; 33; 19; 25" required>
             </div>
 
-            <input type="submit" value="Analisar" />
+            <input type="submit" value="Analisar" class="form__submit"/>
         </form>
     </main>
 
