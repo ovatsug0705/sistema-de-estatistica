@@ -724,6 +724,19 @@ function gerarGraficos(tamanho, variavel, tabela) {
 
 }
 
+//leitor de arquivos
+function leitorArquivo(event) {
+
+    var file = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      var input = document.querySelector(".data");
+      input.value = event.target.result;
+    };
+  
+    reader.readAsText(file);
+}
+
 
 
 

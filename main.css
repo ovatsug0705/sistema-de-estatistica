@@ -74,6 +74,15 @@ a {
     color: #01579B;
 }
 
+.menu__probability:hover .menu__list--probability {
+    visibility: visible;
+}
+
+.menu__probability:hover .menu__link--probability {
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+}
+
 .menu__list--probability {
     list-style: none;   
 }
@@ -86,6 +95,7 @@ a {
 
 .menu__list-item:hover {
     background: #ffffff;
+    transition: all 0.1s;
 }
 
 .menu__list-item:hover .menu__link {
@@ -101,10 +111,31 @@ a {
     position: absolute;
     background: #039BE5;
     visibility: hidden;
+    padding: 0;
+    list-style: none;
+    z-index: 99;
+    left: 0;
+    top: 38px;
 }
 
 .menu__list-item--probability {
     float: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+}
+
+.menu__list-item--probability:hover {
+    background-color: #ffffff;
+    border-top: 1px solid #01579B;
+    border-bottom: 1px solid #01579B;
+    transition: all 0.1s;
+}
+
+.menu__list-item--probability:hover .menu__link--probability {
+    color: #01579B;
+    transition: all 0.1s;
 }
 
 /*estilização do container principal*/
@@ -218,6 +249,22 @@ a {
     outline: none; 
     border-bottom: 2px solid #039BE5;
     transition: all 0.4s;
+}
+
+.data_input__file {
+    display: none;
+}
+
+.data_input__label {
+    color: #ffffff;
+    background-color: #039BE5;
+    padding: 10px;
+    margin: 30px;
+    font-family: "Roboto", sans-serif;
+    display: inline-block;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    text-align: center;
 }
 
 .form__submit {
