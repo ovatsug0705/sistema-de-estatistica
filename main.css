@@ -27,6 +27,7 @@ a {
     color: #01579B;
     padding: 20px;
     font-family: "Roboto", sans-serif;
+    display: inline-block;
 }
 
 .title__link {
@@ -48,12 +49,30 @@ a {
     position: relative;
 }
 
+.check_input {
+    display: none;
+}
+
+.menu__icon {
+    display: none;
+}
+
+.menu__mobile {
+    background-color: #fefefe;
+    position: absolute;
+    width: 300px;
+    height: 100%;
+    left: -300px;
+    transition: all 0.2s linear;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
 .mene::after {
     content: "";
     width: 100%;
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
 }
-
 
 .menu__list {
     list-style: none;
@@ -284,4 +303,77 @@ a {
     background-color: #01579B;
     box-shadow: none;
     outline: none;
+}
+
+/*Comportamento somente em tablets*/
+@media screen and (min-width: 737px) and (max-width: 1023px) {
+
+    .menu__list-item {
+        display: block;
+    }
+
+}
+
+/*Comportamento somente em smartphones*/
+@media screen and (max-width: 737px) {
+
+    .main {
+        width: 100%;
+    }
+
+    .data_input__label {
+        margin: 30px 20px;
+    }
+
+}
+
+/*Comportamento em smartphones e tablets*/
+@media screen and (max-width: 1023px){
+
+    .header {
+        position: relative;
+        box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    }
+    
+    .main__title {
+        padding: 20px 0;
+        vertical-align: middle;
+    }
+    
+    .menu {
+        display: none;
+    }
+
+    .menu__icon {
+        display: inline-block;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    .material-icons {
+        color: #ffffff;
+        font-size: 30px  !important;
+        vertical-align: middle;
+    }
+
+    .menu__link {
+        color: #01579B;
+        font-size: 16px;
+    }
+
+    .menu__list-item {
+        margin: 20px;
+        border-bottom: 1px solid #dddddd;
+        display: block;
+    }
+
+    .menu__mobile {
+        height: 350px;
+    }
+
+    .check_input:checked ~ .menu__mobile {
+        transform: translateX(300px);
+        transition: all 0.2s linear;
+    }
 }
