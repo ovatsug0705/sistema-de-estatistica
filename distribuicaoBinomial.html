@@ -1,47 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
+
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" type="text/css" href="main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema de Estatística</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="probabilidade.js"></script>
-    <script src="chart.js"></script>
+    <script src="interface.js"></script>
 </head>
+
 <body>
-    <h1><a href="index.html">Stateasy</a></h1>
-    <nav>
-        <ul>
-            <li><a href="descritiva.html">Estatística descritiva</a></li>
-            <li><a href="correlacaoRegressao.html">Correlação e Regressão</a></li>
-            <li>
-                <span>Probabilidade</span>                
-                <ul>
-                <li><a href="distribuicaoNormal.html">Distribuição Normal</a></li>
-                <li><a href="distribuicaoUniforme.html">Distribuição Uniforme</a></li>
-                <li><a href="distribuicaoBinomial.html">Distribuição Binomial</a></li>                   
+    <header class="header">
+        <input type="checkbox" class="check_input" id="checkbox">
+        <label for="checkbox" class="menu__icon">
+            <i class="material-icons">menu</i>
+            <!-- <i class="material-icons">&#9776;</i> -->
+        </label>
+        <nav class="menu__mobile">
+            <ul class="menu__list">
+                <li class="menu__list-item">
+                    <a class="menu__link" href="descritiva.html">Estatística descritiva</a>
+                </li>
+                <li class="menu__list-item">
+                    <a class="menu__link" href="correlacaoRegressao.html">Correlação e Regressão</a>
+                </li>
+                <li class="menu__list-item">
+                    <a class="menu__link" href="distribuicaoNormal.html">Distribuição Normal</a>
+                </li>
+                <li class="menu__list-item">
+                    <a class="menu__link" href="distribuicaoUniforme.html">Distribuição Uniforme</a>
+                </li>
+                <li class="menu__list-item">
+                    <a class="menu__link" href="distribuicaoBinomial.html">Distribuição Binomial</a>
+                </li>
+            </ul>
+        </nav>
+        <h1 class="main__title">
+            <a class="title__link" href="index.html">
+                <span class="title__span">stat</span>easy
+            </a>
+        </h1>
+    </header>
+    <nav class="menu">
+        <ul class="menu__list">
+            <li class="menu__list-item">
+                <a class="menu__link" href="descritiva.html">Estatística descritiva</a>
+            </li>
+            <li class="menu__list-item">
+                <a class="menu__link" href="correlacaoRegressao.html">Correlação e Regressão</a>
+            </li>
+            <li class="menu__list-item menu__probability">
+                <span>Probabilidade</span>
+                <ul class="menu__list--probability">
+                    <li class="menu__list-item--probability">
+                        <a class="menu__link--probability" href="distribuicaoNormal.html">Distribuição Normal</a>
+                    </li>
+                    <li class="menu__list-item--probability">
+                        <a class="menu__link--probability" href="distribuicaoUniforme.html">Distribuição Uniforme</a>
+                    </li>
+                    <li class="menu__list-item--probability">
+                        <a class="menu__link--probability" href="distribuicaoBinomial.html">Distribuição Binomial</a>
+                    </li>
                 </ul>
             </li>
         </ul>
     </nav>
-    <main class="main">
+    <main class="main" onclick="fechaMenu()">
         <h1 class="title">Distribuição Binomial</h1>
-        <div class="input">
-            <label for="n">Tamnho da Amostra(n)</label>
-            <input type="text" class="dados" id="n"/>
-            <label for="k">Evento(k)</label>
-            <input type="text" class="dados" id="k"/>
-            <label for="p">Sucesso(p)</label>
-            <input type="text" class="dados" id="p"/>
-            <label for="q">Fracasso(q)</label>
-            <input type="text" class="dados" id="q"/>
+        <div class="form">
+            <h2 class="title_2">Tamnho da Amostra(n)</h2>
+            <input type="text" class="dados text__input" id="n" />
+            <h2 class="title_2">Evento(k)</h2>
+            <input type="text" class="dados text__input" id="k" />
+            <h2 class="title_2">Sucesso(p)</h2>
+            <input type="text" class="dados text__input" id="p" />
+            <h2 class="title_2">Fracasso(q)</h2>
+            <input type="text" class="dados text__input" id="q" />
 
-            <button onclick="distribuicaoBinomial()">Calcular</button>
+            <button class="form__submit" onclick="distribuicaoBinomial()">Calcular</button>
         </div>
-        <div>
-            <p class="result"></p>                            
+        <div class="result">
+            <p class="result__paragraph"></p>
         </div>
     </main>
+   
 </body>
+
 </html>

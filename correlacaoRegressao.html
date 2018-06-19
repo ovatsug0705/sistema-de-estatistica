@@ -1,49 +1,94 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="utf-8" />
-        <title>Sistema de Estatística</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="main.css"/>
-        <script src="correlacaoRegressao.js"></script>
-        <script src="chart.js"></script>
-    </head>
-    <body>
 
-    <h1 class="title1"><a href="index.html">Stateasy</a></h1>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema de Estatística</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="correlacaoRegressao.js"></script>
+    <script src="interface.js"></script>
+</head>
 
-    <nav>
-        <ul>
-            <li><a href="descritiva.html">Estatística descritiva</a></li>
-            <li><a href="correlacaoRegressao.html">Correlação e Regressão</a></li>
-            <li>
-                <span>Probabilidade</span>                
-                <ul>
-                <li><a href="distribuicaoNormal.html">Distribuição Normal</a></li>
-                <li><a href="distribuicaoUniforme.html">Distribuição Uniforme</a></li>
-                <li><a href="distribuicaoBinomial.html">Distribuição Binomial</a></li>                   
+<body>
+    <header class="header">
+        <input type="checkbox" class="check_input" id="checkbox">
+        <label for="checkbox" class="menu__icon">
+            <i class="material-icons">menu</i>
+        </label>
+        <nav class="menu__mobile">
+            <ul class="menu__list">
+                <li class="menu__list-item">
+                    <a class="menu__link" href="descritiva.html">Estatística descritiva</a>
+                </li>
+                <li class="menu__list-item">
+                    <a class="menu__link" href="correlacaoRegressao.html">Correlação e Regressão</a>
+                </li>
+                <li class="menu__list-item">
+                    <a class="menu__link" href="distribuicaoNormal.html">Distribuição Normal</a>
+                </li>
+                <li class="menu__list-item">
+                    <a class="menu__link" href="distribuicaoUniforme.html">Distribuição Uniforme</a>
+                </li>
+                <li class="menu__list-item">
+                    <a class="menu__link" href="distribuicaoBinomial.html">Distribuição Binomial</a>
+                </li>
+            </ul>
+        </nav>
+        <h1 class="main__title">
+            <a class="title__link" href="index.html">
+                <span class="title__span">stat</span>easy
+            </a>
+        </h1>
+    </header>
+    <nav class="menu">
+        <ul class="menu__list">
+            <li class="menu__list-item">
+                <a class="menu__link" href="descritiva.html">Estatística descritiva</a>
+            </li>
+            <li class="menu__list-item">
+                <a class="menu__link" href="correlacaoRegressao.html">Correlação e Regressão</a>
+            </li>
+            <li class="menu__list-item menu__probability">
+                <span>Probabilidade</span>
+                <ul class="menu__list--probability">
+                    <li class="menu__list-item--probability">
+                        <a class="menu__link--probability" href="distribuicaoNormal.html">Distribuição Normal</a>
+                    </li>
+                    <li class="menu__list-item--probability">
+                        <a class="menu__link--probability" href="distribuicaoUniforme.html">Distribuição Uniforme</a>
+                    </li>
+                    <li class="menu__list-item--probability">
+                        <a class="menu__link--probability" href="distribuicaoBinomial.html">Distribuição Binomial</a>
+                    </li>
                 </ul>
             </li>
         </ul>
     </nav>
 
-    <div class="hitorico">
-        <form onsubmit="passarDados()" action="resultados2.html">
-            <label for="nomevar1">Nome da variável Independente(X)</label>
-            <input type="text" class="dados" id="nomevar1" placeholder="Name"/>
+    <main class="main" onclick="fechaMenu()">
+        <h1 class="title">Correlação e Regressão</h1>
+        <form onsubmit="passarDados()" action="resultados2.html" class="form">
+            <h2 class="title_2">Nome da variável Independente(X)</h2>
+            <input type="text" class="dados text__input" id="nomevar1" placeholder="Name" />
 
-            <label for="nomevar2">Nome da variável Dependente(Y)</label>
-            <input type="text" class="dados" id="nomevar2" placeholder="Name"/>
+            <h2 class="title_2">Nome da variável Dependente(Y)</h2>
+            <input type="text" class="dados text__input" id="nomevar2" placeholder="Name" />
 
-            <label for="hist1">Histórico da variável Independente(X)</label>
-            <input type="text" class="dados" id="hist1" placeholder="Ex: 30;20;10"/>
+            <h2 class="title_2">Histórico da variável Independente(X)</h2>
+            <input type="text" class="dados text__input" id="hist1" placeholder="Ex: 30;20;10" />
 
-            <label for="hist2">Histórico da variável Dependente(Y)</label>
-            <input type="text" class="dados" id="hist2" placeholder="Ex: 30;20;10"/>
+            <h2 class="title_2">Histórico da variável Dependente(Y)</h2>
+            <input type="text" class="dados text__input" id="hist2" placeholder="Ex: 30;20;10" />
 
-            <input type="submit" value="Calcular"/>
+            <input type="file" accept=".txt" class="data_input__file" onchange="leitorArquivo(event, 2)" id="input_file">
+            <label for="input_file" class="data_input__label" title="Carregue um arquivo .txt com os dados">Escolha um arquivo</label>
+
+            <input type="submit" value="Calcular" class="form__submit"/>
         </form>
-    </div>
+    </main>
 
-    </body>
+</body>
+
 </html>

@@ -23,8 +23,10 @@ function distribuicaoBinomial() {
         }
     }
 
-    var paragraph = document.querySelector(".result")
-    paragraph.innerHTML = "A probabilidade segundo a Distribuição Binomial é: " + result.toFixed(2);
+    var paragraph = document.querySelector(".result__paragraph");
+    paragraph.innerHTML = "A probabilidade segundo a Distribuição Binomial é de: " + result.toFixed(2)*100 + "%.";
+
+    paragraph.style.padding = "20px";
 }
 
 function fatorial(num) {
@@ -108,8 +110,10 @@ function distribuicaoNormal() {
         }
     }
 
-    var p = document.querySelector(".result");
-    p.innerHTML = "A probabilidade segundo a Distribuição Normal é de: " + result + "%.";
+    var p = document.querySelector(".result__paragraph");
+    p.innerHTML = "A probabilidade segundo a Distribuição Normal é de: " + result.toFixed(2) + "%.";
+
+    document.querySelector(".result__paragraph").style.padding = "20px";
 }
 
 function buscaTabela(num, media, dp) {
@@ -216,8 +220,7 @@ function distribuicaoUniforme() {
        intervalo[i] = Number(intervalo[i]);
      }
 
-    media = (max + min) / 2
-    console.log(media);
+    media = (max + min) / 2;
 
     dp = Math.sqrt((Math.pow(max - min, 2)) / 12);
 
@@ -233,15 +236,21 @@ function distribuicaoUniforme() {
         probabilidade = (1 / (max - min)) * Math.abs(intervalo[0] - intervalo[1]);
     }
 
-    var p = document.querySelectorAll(".result")[0]
-    p.innerHTML = "A probabilidadde segundo a Distribuição Uniforme é de: " + probabilidade * 100;
+    var p = document.querySelectorAll(".result__paragraph")[0]
+    p.innerHTML = "A probabilidadde segundo a Distribuição Uniforme é de: " + (probabilidade * 100).toFixed(2) + "%.";
 
-    var p = document.querySelectorAll(".result")[1]
-    p.innerHTML = "A media é de: " + media;
+    var p = document.querySelectorAll(".result__paragraph")[1]
+    p.innerHTML = "A media é de: " + media.toFixed(2);
 
-    var p = document.querySelectorAll(".result")[2]
-    p.innerHTML = "O desvio padrão é de: " + dp;
+    var p = document.querySelectorAll(".result__paragraph")[2]
+    p.innerHTML = "O desvio padrão é de: " + dp.toFixed(2);
 
-    var p = document.querySelectorAll(".result")[3]
-    p.innerHTML = "O coeficiente de variação é de: " + cv;
+    var p = document.querySelectorAll(".result__paragraph")[3]
+    p.innerHTML = "O coeficiente de variação é de: " + (cv * 100).toFixed(2);
+
+    for (var i = 0; i < 4; i++){
+        document.querySelectorAll(".result__paragraph")[i].style.padding = "25px";
+        document.querySelectorAll(".result")[i].style.border = "1px solid #039BE5";
+    }
+
 }

@@ -4,15 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="cache-control" content="max-age=0" />
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="expires" content="0" />
-    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-    <meta http-equiv="pragma" content="no-cache" />
     <title>Sistema de Estatística</title>
     <link rel="stylesheet" type="text/css" href="main.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="analise.js"></script>
+    <script src="interface.js"></script>
 </head>
 
 <body>
@@ -20,6 +16,7 @@
         <input type="checkbox" class="check_input" id="checkbox">
         <label for="checkbox" class="menu__icon">
             <i class="material-icons">menu</i>
+            <!-- <i class="material-icons">&#9776;</i> -->
         </label>
         <nav class="menu__mobile">
             <ul class="menu__list">
@@ -71,10 +68,11 @@
         </ul>
     </nav>
 
-    <main class="main">
+    <main class="main" onclick="fechaMenu()">
+        <h1 class="title">Estatística Descritiva</h1>
         <form onsubmit="passardados()" action="resultados.html" class="form">
             <div class="var_input">
-                <h2 class="title">Tipo de Variável</h2>
+                <h2 class="title_2">Tipo de Variável</h2>
                 <div class="container">
                     <div class="radio__content">
                         <input type="radio" name="variavel" id="opcao1" value="nominal" class="radio__button" onclick="habilitarOrdinal(this.value)"
@@ -100,13 +98,13 @@
             </div>
 
             <div class="ordinal_input">
-                <h2 class="title">Ordenação das variáveis ordinais</h2>
+                <h2 class="title_2">Ordenação das variáveis ordinais</h2>
                 <input type="text" name="ordinal" class="text__input ordinal" placeholder="EX: bom; regular; pessimo" title="Somente se a variável for qualitativa ordinal"
                     disabled>
             </div>
 
             <div class="estatistic_process">
-                <h2 class="title">Processo Estatístico</h2>
+                <h2 class="title_2">Processo Estatístico</h2>
                 <div class="container">
                     <div class="radio__content">
                         <input type="radio" name="processo" id="processo1" value="populacao" class="radio__button" checked/>
@@ -120,15 +118,15 @@
             </div>
 
             <div class="names_input">
-                <h2 class="title">Nome da Variável</h2>
+                <h2 class="title_2">Nome da Variável</h2>
                 <input type="text" class="dados text__input" placeholder="EX: Número de vendas" title="Dê um nome a sua variavel" required>
-                <h2 class="title">Nome da Frequência</h2>
+                <h2 class="title_2">Nome da Frequência</h2>
                 <input type="text" class="dados text__input" placeholder="EX: Quantidade de Representantes" title="Dê um nome a sua frequência"
                     required>
             </div>
 
             <div class="medidas_separatrizes">
-                <h2 class="title">Medidas Separatrizes</h2>
+                <h2 class="title_2">Medidas Separatrizes</h2>
                 <div class="container">
                     <div class="radio__content">
                         <input type="radio" name="separatriz" id="q" value="quartil" class="radio__button" onclick="medidaSeparatriz(this.value)"
@@ -158,9 +156,9 @@
             </div>
 
             <div class="data_input">
-                <h2 class="title" title="separar dados por ponto e vírgula">Entrada de dados</h2>
+                <h2 class="title_2" title="separar dados por ponto e vírgula">Entrada de dados</h2>
                 <input type="text" name="entrada" class="text__input data" placeholder="EX: 20; 33; 19; 25" required>
-                <input type="file" accept=".txt" class="data_input__file" onchange="leitorArquivo(event)" id="input_file">
+                <input type="file" accept=".txt" class="data_input__file" onchange="leitorArquivo(event, 1)" id="input_file">
                 <label for="input_file" class="data_input__label" title="Carregue um arquivo .txt com os dados">Escolha um arquivo</label>
             </div>
 
