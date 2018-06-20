@@ -71,12 +71,12 @@
         <h1 class="title">Distribuição Uniforme</h1>
         <div class="form">
             <h2 class="title_2">Ponto Máximo</h2>
-            <input type="text" class="dados text__input" id="max" />
+            <input type="text" class="dados text__input" id="max" placeholder="EX: 1500" title="Ponto máximo do intervalo"/>
             <h2 class="title_2">Ponto Mínimo</h2>
-            <input type="text" class="dados text__input" id="min" />
+            <input type="text" class="dados text__input" id="min" placeholder="EX: 200" title="Ponto mínimo do intervalo"/>
 
             <h2 class="title_2">Intervalo da Análise</h2>
-            <div class="container">
+            <div class="radio__container">
                 <div class="radio__content">
                     <input type="radio" class="item radio__button" id="menor que" name="option" value="menor" checked/>
                     <label class="radio__label" for="menor que">Menor que</label>
@@ -92,7 +92,7 @@
             </div>
 
             <h2 class="title_2">Dados</h2>
-            <input type="text" class="dados text__input" id="dados" />
+            <input type="text" class="dados text__input" id="dados" placeholder="EX: 500" title="Entrada dos dados"/>
             <button class="form__submit" onclick="distribuicaoUniforme()">Calcular</button>
         </div>
 

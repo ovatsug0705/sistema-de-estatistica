@@ -1,49 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
+
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema de Estatística</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="correlacaoRegressao.js"></script>
+    <script src="interface.js"></script>
     <script src="chart.js"></script>
 </head>
+
 <body onload="correlacaoRegressao(1)">
-        <h1><a href="index.html">Stateasy</a></h1>
-        <nav>
-            <ul>
-                <li><a href="descritiva.html">Estatística descritiva</a></li>
-                <li><a href="correlacaoRegressao.html">Correlação e Regressão</a></li>
-                <li>
-                    <span>Probabilidade</span>                
-                    <ul>
-                    <li><a href="distribuicaoNormal.html">Distribuição Normal</a></li>
-                    <li><a href="distribuicaoUniforme.html">Distribuição Uniforme</a></li>
-                    <li><a href="distribuicaoBinomial.html">Distribuição Binomial</a></li>                   
-                    </ul>
+    <header class="header">
+        <input type="checkbox" class="check_input" id="checkbox">
+        <label for="checkbox" class="menu__icon">
+            <i class="material-icons">menu</i>
+            <!-- <i class="material-icons">&#9776;</i> -->
+        </label>
+        <nav class="menu__mobile">
+            <ul class="menu__list">
+                <li class="menu__list-item">
+                    <a class="menu__link" href="descritiva.html">Estatística descritiva</a>
+                </li>
+                <li class="menu__list-item">
+                    <a class="menu__link" href="correlacaoRegressao.html">Correlação e Regressão</a>
+                </li>
+                <li class="menu__list-item">
+                    <a class="menu__link" href="distribuicaoNormal.html">Distribuição Normal</a>
+                </li>
+                <li class="menu__list-item">
+                    <a class="menu__link" href="distribuicaoUniforme.html">Distribuição Uniforme</a>
+                </li>
+                <li class="menu__list-item">
+                    <a class="menu__link" href="distribuicaoBinomial.html">Distribuição Binomial</a>
                 </li>
             </ul>
         </nav>
-        <main class="main">
-            <div class="container">
+        <h1 class="main__title">
+            <a class="title__link" href="index.html">
+                <span class="title__span">stat</span>easy
+            </a>
+        </h1>
+    </header>
+    <nav class="menu" onclick="fechaMenu()">
+        <ul class="menu__list">
+            <li class="menu__list-item">
+                <a class="menu__link" href="descritiva.html">Estatística descritiva</a>
+            </li>
+            <li class="menu__list-item">
+                <a class="menu__link" href="correlacaoRegressao.html">Correlação e Regressão</a>
+            </li>
+            <li class="menu__list-item menu__probability">
+                <span>Probabilidade</span>
+                <ul class="menu__list--probability">
+                    <li class="menu__list-item--probability">
+                        <a class="menu__link--probability" href="distribuicaoNormal.html">Distribuição Normal</a>
+                    </li>
+                    <li class="menu__list-item--probability">
+                        <a class="menu__link--probability" href="distribuicaoUniforme.html">Distribuição Uniforme</a>
+                    </li>
+                    <li class="menu__list-item--probability">
+                        <a class="menu__link--probability" href="distribuicaoBinomial.html">Distribuição Binomial</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <main class="main">
+        <h1 class="title">Correlação e Regressão - Resultados</h1>
 
-            </div>
+        <div class="container"></div>
 
-            <div class="canvas" style="width: 600px;">
-                <canvas id="myChart"></canvas>
-            </div>
+        <div class="canvas" style="width: 600px;">
+            <canvas id="myChart"></canvas>
+        </div>
 
-            <div class="container2">
-                <input type="radio" name="variavel" id="opcao1" value="x" class="item"  checked/>            
-                <label for="opcao1">Variavel Independente(X)</label>
-                <input type="radio" name="variavel" id="opcao2" value="y" class="item" />            
-                <label for="opcao2">Variavel Dependente(Y)</label>
+        <div class="container2">
+            <input type="radio" name="variavel" id="opcao1" value="x" class="item" checked/>
+            <label for="opcao1">Variavel Independente(X)</label>
+            <input type="radio" name="variavel" id="opcao2" value="y" class="item" />
+            <label for="opcao2">Variavel Dependente(Y)</label>
 
-                <label for="var">Dados</label>
-                <input type="text" class="dados" id="var" placeholder="Ex: 30;20;10"/>
-    
-                <input type="button" value="Calcular" onclick="correlacaoRegressao(2)"/>
-            </div>
-        </main>
+            <label for="var">Dados</label>
+            <input type="text" class="dados" id="var" placeholder="Ex: 30;20;10" />
+
+            <input type="button" value="Calcular" onclick="correlacaoRegressao(2)" />
+        </div>
+    </main>
 </body>
+
 </html>

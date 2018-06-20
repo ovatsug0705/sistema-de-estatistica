@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8" />
@@ -71,12 +71,12 @@
         <h1 class="title">Distribuição Normal</h1>
         <div class="form">
             <h2 class="title_2">Média</h2>
-            <input type="text" class="dados text__input" id="media" />
+            <input type="text" class="dados text__input" id="media" title="Valor da média" placeholder="EX: 22.5"/>
             <h2 class="title_2">Desvio Padrão</h2>
-            <input type="text" class="dados text__input" id="dp" />
+            <input type="text" class="dados text__input" id="dp" title="Valor do Desvio Padrão" placeholder="EX: 4.6" />
 
             <h2 class="title_2">Intervalo da Análise</h2>
-            <div class="container">
+            <div class="radio__container">
                 <div class="radio__content">
                     <input type="radio" class="item radio__button" id="menor que" name="option" value="menor" checked/>
                     <label class="radio__label" for="menor que">Menor que</label>
@@ -92,7 +92,7 @@
             </div>
 
             <h2 class="title_2">Dados</h2>
-            <input type="text" class="dados text__input" id="dados" />
+            <input type="text" class="dados text__input" id="dados" placeholder="EX: 20" title="Entrada dos dados"/>
 
             <button class="form__submit" onclick="distribuicaoNormal()">Calcular</button>
         </div>

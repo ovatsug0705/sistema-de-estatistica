@@ -227,6 +227,7 @@ function qualitativa_quantitativaDiscreta(dados2, ordinal, nomeVar, nomeFreq, ti
             }
             cont++;
         }
+        medidaSeparatriz = medidaSeparatriz.toFixed(2);
     }
 
     saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, coeficienteDeVariacao, medida, medidaSeparatriz, tipo);
@@ -338,7 +339,7 @@ function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida, tipo)
 
         if (i == 1) {
             moda.push(tabela[i][2]);
-            moda2.push(vetorPM[i - 1]);
+            moda2.push(vetorPM[i - 1]).toFixed(2);
             moda3.push(tabela[i][0]);
         }
         else if (tabela[i][2] > moda[moda.length - 1]) {
@@ -351,7 +352,7 @@ function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida, tipo)
         }
         else if (tabela[i][2] == moda[moda.length - 1]) {
             moda.push(tabela[i][2]);
-            moda2.push(vetorPM[i - 1]);
+            moda2.push(vetorPM[i - 1]).toFixed(2);
             moda3.push(tabela[i][0]);
         }
     }
@@ -448,6 +449,9 @@ function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida, tipo)
                 modaCzuber.push(vetorMin[moda3[i] - 1] + ((tabela[moda3[i]][2] - fiant)
                     / ((tabela[moda3[i]][2] - fiant) + (tabela[moda3[i]][2] - fipos))) * intervalo);
             }
+
+            modaKing[i] = modaKing[i].toFixed(2);
+            modaCzuber[i] = modaCzuber[i].toFixed(2);
         }
         console.log("A(s) moda(s) de King é(são): " + modaKing);
         console.log("A(s) moda(s) de Czuber é(são): " + modaCzuber);
@@ -463,7 +467,7 @@ function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida, tipo)
     else if (processo == "amostra") {
         desvioPadrao = Math.sqrt(desvioPadrao / (somaFrequencia - 1));
     }
-    // desvioPadrao = desvioPadrao.toFixed(2);
+    desvioPadrao = desvioPadrao.toFixed(2);
     coeficienteDeVariacao = (desvioPadrao / media) * 100;
     coeficienteDeVariacao = coeficienteDeVariacao.toFixed(2);    
     console.log("O desvio padrão é de: " + desvioPadrao);
@@ -490,6 +494,7 @@ function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida, tipo)
         }
         cont++;
     }
+    medidaSeparatriz = medidaSeparatriz.toFixed(2);
 
     saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, coeficienteDeVariacao, medida, medidaSeparatriz, tipo, modaCzuber, modaKing, modaPearson);
 }
@@ -502,43 +507,31 @@ function ordenaNum(a, b) {
 //exibe a tabela, o gráfico e os dados analisados
 function saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, coeficienteDeVariacao, medida, medidaSeparatriz, variavel, modaCzuber, modaKing, modaPearson) {
 
-    //insere divs no documento de resultados
-    var main = document.querySelector(".main");
-    var container = document.createElement("div");
-    var container2 = document.createElement("div");
-    var divCanvas = document.createElement("div");
-    var canvas = document.createElement("canvas");
-    
-    container.setAttribute("class", "container");
-    container2.setAttribute("class", "container2");
-    canvas.setAttribute("id", "myChart");  
-      
-    main.appendChild(container);
-    main.appendChild(container2);
-    main.appendChild(divCanvas);
-    divCanvas.appendChild(canvas);
-    
     //insere a tabela na tela
     var table = document.createElement("table");
-    var div = document.querySelector(".container");    
+    var div = document.querySelector(".table");    
 
-    table.setAttribute("id", "tabelaDados");
+    table.setAttribute("class", "data__table");
     div.appendChild(table);
 
     var tr = document.createElement("tr");
+    tr.setAttribute("class","data__table_row");
     table.appendChild(tr);
 
     for (var i = 0; i < 6; i++) {
         var th = document.createElement("th");
+        th.setAttribute("class","data__table_header");
         th.textContent = tabela[0][i];
         tr.appendChild(th);
     }
 
     for (var i = 1; i <= tamanho; i++) {
         var tr = document.createElement("tr");
+        tr.setAttribute("class","data__table_row");        
         table.appendChild(tr);
         for (var x = 0; x < 6; x++) {
             var td = document.createElement("td");
+            td.setAttribute("class","data__table_data");
             td.textContent = tabela[i][x];
             tr.appendChild(td);
         }
@@ -546,71 +539,128 @@ function saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, co
 
     if (variavel == "discreta" || variavel == "continua") {
 
-        var div2 = document.querySelector(".container2");
-        var text;
+        var div2 = document.querySelector(".container");
 
         //insere a media
+        var container = document.createElement("div");
+        container.setAttribute("class", "container__result");
+        div2.appendChild(container);
+        var title = document.createElement("h3");
+        title.setAttribute("class", "container__result_title");
+        title.textContent = "Média"
+        container.appendChild(title);
         var p = document.createElement("p");
-        text = document.createTextNode("A media é: " + media);
-        div2.appendChild(p);
-        p.appendChild(text);
+        p.setAttribute("class", "container__result_data");
+        p.textContent = media.toFixed(2);
+        container.appendChild(p);
 
         //insere a mediana
+        var container = document.createElement("div");
+        container.setAttribute("class", "container__result");
+        div2.appendChild(container);
+        var title = document.createElement("h3");
+        title.setAttribute("class", "container__result_title");
+        title.textContent = "Mediana"
+        container.appendChild(title);
         var p = document.createElement("p");
-        text = document.createTextNode("A mediana é: " + mediana);
-        div2.appendChild(p);
-        p.appendChild(text);
+        p.setAttribute("class", "container__result_data");
+        p.textContent = mediana.toFixed(2);
+        container.appendChild(p);
 
         //insere a moda
+        var container = document.createElement("div");
+        container.setAttribute("class", "container__result");
+        div2.appendChild(container);
+        var title = document.createElement("h3");
+        title.setAttribute("class", "container__result_title");
+        title.textContent = "Moda"
+        container.appendChild(title);
         var p = document.createElement("p");
-        if (valorModa == "Amodal") {
-            text = document.createTextNode("Os dados são amodais");
-        }
-        else {
-            text = document.createTextNode("A(s) modas são:" + valorModa);
-        }
-        div2.appendChild(p);
-        p.appendChild(text);
+        p.setAttribute("class", "container__result_data");
+        p.textContent = valorModa;
+        container.appendChild(p);
 
         //insere as modas exclusivas da mediana
         if (variavel == "continua") {
+            var container = document.createElement("div");
+            container.setAttribute("class", "container__result");
+            div2.appendChild(container);
+            var title = document.createElement("h3");
+            title.setAttribute("class", "container__result_title");
+            title.textContent = "Moda de Czuber"
+            container.appendChild(title);
             var p = document.createElement("p");
-            text = document.createTextNode("A moda de Czuber é: " + modaCzuber);
-            div2.appendChild(p);
-            p.appendChild(text);
+            p.setAttribute("class", "container__result_data");
+            p.textContent = modaCzuber;
+            container.appendChild(p);
 
+            var container = document.createElement("div");
+            container.setAttribute("class", "container__result");
+            div2.appendChild(container);
+            var title = document.createElement("h3");
+            title.setAttribute("class", "container__result_title");
+            title.textContent = "Moda de King"
+            container.appendChild(title);
             var p = document.createElement("p");
-            text = document.createTextNode("A moda de King é: " + modaKing);
-            div2.appendChild(p);
-            p.appendChild(text);
+            p.setAttribute("class", "container__result_data");
+            p.textContent = modaKing;
+            container.appendChild(p);
 
+            var container = document.createElement("div");
+            container.setAttribute("class", "container__result");
+            div2.appendChild(container);
+            var title = document.createElement("h3");
+            title.setAttribute("class", "container__result_title");
+            title.textContent = "Moda de Pearson"
+            container.appendChild(title);
             var p = document.createElement("p");
-            text = document.createTextNode("A moda de Peason é: " + modaPearson);
-            div2.appendChild(p);
-            p.appendChild(text);
+            p.setAttribute("class", "container__result_data");
+            p.textContent = modaPearson;
+            container.appendChild(p);
         }
 
         //insere o desvio padrão
+        var container = document.createElement("div");
+        container.setAttribute("class", "container__result");
+        div2.appendChild(container);
+        var title = document.createElement("h3");
+        title.setAttribute("class", "container__result_title");
+        title.textContent = "Desvio Padrão"
+        container.appendChild(title);
         var p = document.createElement("p");
-        text = document.createTextNode("O desvio padrão é: " + desvioPadrao);
-        div2.appendChild(p);
-        p.appendChild(text);
-
+        p.setAttribute("class", "container__result_data");
+        p.textContent = desvioPadrao;
+        container.appendChild(p);
+        
         //insere o coeficiente de variação
+        var container = document.createElement("div");
+        container.setAttribute("class", "container__result");
+        div2.appendChild(container);
+        var title = document.createElement("h3");
+        title.setAttribute("class", "container__result_title");
+        title.textContent = "Coeficiente de Variação"
+        container.appendChild(title);
         var p = document.createElement("p");
-        text = document.createTextNode("O coeficiente de variação é: " + coeficienteDeVariacao + "%.");
-        div2.appendChild(p);
-        p.appendChild(text);
+        p.setAttribute("class", "container__result_data");
+        p.textContent = coeficienteDeVariacao + "%.";
+        container.appendChild(p);
 
         //insere a medida separatriz
+        var container = document.createElement("div");
+        container.setAttribute("class", "container__result--separatriz");
+        div2.appendChild(container);
+        var title = document.createElement("h3");
+        title.setAttribute("class", "container__result_title");
+        title.textContent = "Medida Separatriz"
+        container.appendChild(title);
         var p = document.createElement("p");
-        text = document.createTextNode(medida + "% dos dados são  " + medidaSeparatriz + " ou menos");
-        div2.appendChild(p);
-        p.appendChild(text);
+        p.setAttribute("class", "container__result_data");
+        p.textContent = medida + "% dos dados são  " + medidaSeparatriz + " ou menos";
+        container.appendChild(p);
         var p = document.createElement("p");
-        text = document.createTextNode(100 - medida + "% dos dados são  " + medidaSeparatriz + " ou mais");
-        div2.appendChild(p);
-        p.appendChild(text);
+        p.setAttribute("class", "container__result_data");
+        p.textContent = 100 - medida + "% dos dados são  " + medidaSeparatriz + " ou mais";
+        container.appendChild(p);
     }
 
     gerarGraficos(tamanho, variavel, tabela)
