@@ -25,7 +25,7 @@ function distribuicaoBinomial() {
 
     var paragraph = document.querySelector(".result__paragraph");
     paragraph.innerHTML = "A probabilidade segundo a Distribuição Binomial é de: " + result.toFixed(2)*100 + "%.";
-
+    document.querySelector(".result").style.border = "1px solid #039BE5";
     paragraph.style.padding = "20px";
 }
 
@@ -114,6 +114,7 @@ function distribuicaoNormal() {
     p.innerHTML = "A probabilidade segundo a Distribuição Normal é de: " + result.toFixed(2) + "%.";
 
     document.querySelector(".result__paragraph").style.padding = "20px";
+    document.querySelector(".result").style.border = "1px solid #039BE5";
 }
 
 function buscaTabela(num, media, dp) {

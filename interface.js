@@ -5,7 +5,7 @@ function leitorArquivo(event, tipo) {
     var reader = new FileReader();
     reader.onload = function(event) {
         if (tipo == "1"){
-            var input = document.querySelector(".data");
+            var input = document.querySelector("#data_input");
             input.value = event.target.result;
         }
         else {
@@ -32,33 +32,35 @@ function fechaMenu() {
     document.querySelector(".check_input").checked = false;
 }
 
+//muda o step da medida separatriz
 function medidaSeparatriz(separatriz) {
     if (separatriz == "quartil") {
-        document.querySelector("#valor").step = "25";
-        document.querySelector("#valor").value = "0"
+        document.querySelector("#medida_separatriz").step = "25";
+        document.querySelector("#medida_separatriz").value = "0"
     }
     else if (separatriz == "quintil") {
-        document.querySelector("#valor").step = "20";
-        document.querySelector("#valor").value = "0";
+        document.querySelector("#medida_separatriz").step = "20";
+        document.querySelector("#medida_separatriz").value = "0";
     }
     else if (separatriz == "decil") {
-        document.querySelector("#valor").step = "10";
-        document.querySelector("#valor").value = "0";
+        document.querySelector("#medida_separatriz").step = "10";
+        document.querySelector("#medida_separatriz").value = "0";
     }
     else {
-        document.querySelector("#valor").step = "1";
-        document.querySelector("#valor").value = "0";
+        document.querySelector("#medida_separatriz").step = "1";
+        document.querySelector("#medida_separatriz").value = "0";
     }
 }
 
+//habilita ou não o campo da variavel ordinal
 function habilitarOrdinal(variavel) {
     if (variavel == "ordinal") {
-        document.querySelector(".ordinal").removeAttribute("disabled");
-        document.querySelector(".ordinal").setAttribute("required", "true");
+        document.querySelector("#ordem_ordinal").removeAttribute("disabled");
+        document.querySelector("#ordem_ordinal").setAttribute("required", "true");
     }
     else {
-        document.querySelector(".ordinal").setAttribute("disabled", "true");
-        document.querySelector(".ordinal").removeAttribute("required");
-        document.querySelector(".ordinal").value = "";
+        document.querySelector("#ordem_ordinal").setAttribute("disabled", "true");
+        document.querySelector("#ordem_ordinal").removeAttribute("required");
+        document.querySelector("#ordem_ordinal").value = "";
     }
 }

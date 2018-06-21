@@ -75,32 +75,31 @@
                 <h2 class="title_2">Tipo de Variável</h2>
                 <div class="radio__container">
                     <div class="radio__content">
-                        <input type="radio" name="variavel" id="opcao1" value="nominal" class="radio__button" onclick="habilitarOrdinal(this.value)"
+                        <input type="radio" name="variavel" id="nominal" value="nominal" class="radio__button" onclick="habilitarOrdinal(this.value)"
                             checked/>
-                        <label class="radio__label" for="opcao1">Qualitativa Nominal</label>
+                        <label class="radio__label" for="nominal">Qualitativa Nominal</label>
                     </div>
                     <div class="radio__content">
-                        <input type="radio" name="variavel" id="opcao2" value="ordinal" class="radio__button" onclick="habilitarOrdinal(this.value)"
+                        <input type="radio" name="variavel" id="ordinal" value="ordinal" class="radio__button" onclick="habilitarOrdinal(this.value)"
                         />
-                        <label class="radio__label" for="opcao2">Qualitativa Ordinal</label>
+                        <label class="radio__label" for="ordinal">Qualitativa Ordinal</label>
                     </div>
                     <div class="radio__content">
-                        <input type="radio" name="variavel" id="opcao3" value="discreta" class="radio__button" onclick="habilitarOrdinal(this.value)"
+                        <input type="radio" name="variavel" id="discreta" value="discreta" class="radio__button" onclick="habilitarOrdinal(this.value)"
                         />
-                        <label class="radio__label" for="opcao3">Quantitativa Discreta</label>
+                        <label class="radio__label" for="discreta">Quantitativa Discreta</label>
                     </div>
                     <div class="radio__content">
-                        <input type="radio" name="variavel" id="opcao4" value="continua" class="radio__button" onclick="habilitarOrdinal(this.value)"
+                        <input type="radio" name="variavel" id="continua" value="continua" class="radio__button" onclick="habilitarOrdinal(this.value)"
                         />
-                        <label class="radio__label" for="opcao4">Quantitativa Contínua</label>
+                        <label class="radio__label" for="continua">Quantitativa Contínua</label>
                     </div>
                 </div>
             </div>
 
             <div class="ordinal_input">
                 <h2 class="title_2">Ordenação das variáveis ordinais</h2>
-                <input type="text" name="ordinal" class="text__input ordinal" placeholder="EX: bom; regular; pessimo" title="Somente se a variável for qualitativa ordinal"
-                    disabled>
+                <input type="text" name="ordinal" class="text__input" placeholder="EX: bom; regular; pessimo" title="Somente se a variável for qualitativa ordinal" id="ordem_ordinal" disabled>
             </div>
 
             <div class="estatistic_process">
@@ -119,10 +118,9 @@
 
             <div class="names_input">
                 <h2 class="title_2">Nome da Variável</h2>
-                <input type="text" class="dados text__input" placeholder="EX: Número de vendas" title="Dê um nome a sua variavel" required>
+                <input type="text" class="text__input" placeholder="EX: Número de vendas" title="Dê um nome a sua variavel" id="nome_var" required>
                 <h2 class="title_2">Nome da Frequência</h2>
-                <input type="text" class="dados text__input" placeholder="EX: Quantidade de Representantes" title="Dê um nome a sua frequência"
-                    required>
+                <input type="text" class="text__input" placeholder="EX: Quantidade de Representantes" title="Dê um nome a sua frequência" id="nome_freq" required>
             </div>
 
             <div class="medidas_separatrizes">
@@ -150,14 +148,14 @@
                 </div>
                 <div class="medidas_separatrizes__container">
                     <label for="valor" class="medidas_separatrizes__valor">Valor:</label>
-                    <input type="number" step="25" min="0" max="100" title="Valor da medida separatriz" id="valor" class="medidas_separatrizes__input"
+                    <input type="number" step="25" min="0" max="100" title="Valor da medida separatriz" id="medida_separatriz" class="medidas_separatrizes__input"
                     />
                 </div>
             </div>
 
             <div class="data_input">
                 <h2 class="title_2" title="separar dados por ponto e vírgula">Entrada de dados</h2>
-                <input type="text" name="entrada" class="text__input data" placeholder="EX: 20; 33; 19; 25" title="Entrada dos dados" required>
+                <input type="text" name="entrada" class="text__input" placeholder="EX: 20; 33; 19; 25" title="Entrada dos dados" id="data_input" required>
                 <input type="file" accept=".txt" class="data_input__file" onchange="leitorArquivo(event, 1)" id="input_file">
                 <label for="input_file" class="data_input__label" title="Carregue um arquivo .txt com os dados">Escolha um arquivo</label>
             </div>

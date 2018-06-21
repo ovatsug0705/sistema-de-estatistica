@@ -68,25 +68,30 @@
             </li>
         </ul>
     </nav>
-    <main class="main">
+    <main class="main" onclick="fechaMenu()">
         <h1 class="title">Correlação e Regressão - Resultados</h1>
 
         <div class="container"></div>
 
-        <div class="canvas" style="width: 600px;">
+        <div class="canvas">
             <canvas id="myChart"></canvas>
         </div>
 
-        <div class="container2">
-            <input type="radio" name="variavel" id="opcao1" value="x" class="item" checked/>
-            <label for="opcao1">Variavel Independente(X)</label>
-            <input type="radio" name="variavel" id="opcao2" value="y" class="item" />
-            <label for="opcao2">Variavel Dependente(Y)</label>
+        <div class="container_correlacao">
+            <div class="radio__container">
+                <div class="radio__content radio__content--correlacao">
+                    <input type="radio" name="variavel" id="opcao1" value="x" class="item radio__button" checked/>
+                    <label class="radio__label" for="opcao1">Variavel Independente(X)</label>
+                </div>
+                <div class="radio__content radio__content--correlacao">
+                    <input type="radio" name="variavel" id="opcao2" value="y" class="item radio__button" />
+                    <label class="radio__label" for="opcao2">Variavel Dependente(Y)</label>
+                </div>
+            </div>
+            <h2 class="title_2">Dados</h2>
+            <input type="text" class="dados text__input" id="var" placeholder="Ex: 30;20;10" />
 
-            <label for="var">Dados</label>
-            <input type="text" class="dados" id="var" placeholder="Ex: 30;20;10" />
-
-            <input type="button" value="Calcular" onclick="correlacaoRegressao(2)" />
+            <input class="form__submit" type="button" value="Inserir Ponto" onclick="correlacaoRegressao(2)" />
         </div>
     </main>
 </body>

@@ -200,6 +200,10 @@ a {
     width: 250px;
 }
 
+.radio__content--correlacao {
+    width: 300px;
+}
+
 .radio__button {
     position: absolute;
     width: 6px;
@@ -329,6 +333,83 @@ a {
     font-weight: bolder;
 }
 
+.table {
+    overflow-x: auto;
+    margin: 50px 0 0;
+}
+
+.data__table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.data__table_header {
+    background-color: #039BE5;
+    color: #ffffff;
+    padding: 12px;
+    max-width: 250px;
+    min-width: 120px;
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    font-weight: normal;
+}
+
+.data__table_row:nth-child(even){
+    background-color: #E3F2FD;
+}
+
+.data__table_data {
+    color: #424242;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    padding: 12px;
+    text-align: center;    
+}
+
+.container {
+    text-align: center;
+}
+
+.container__result {
+    margin: 40px;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    padding: 25px;
+    min-width: 300px;
+}
+
+.container_correlacao {
+    width: 95%;
+    padding-bottom: 50px;
+    margin: 0 auto;
+}
+
+.container__result--separatriz {
+    width: 95%;
+}
+
+.container__result_title {
+    font-size: 22px;
+    color: #01579B;
+    font-family: "Roboto", sans-serif;
+}
+
+.container__result_data {
+    font-size: 27px;
+    color: #424242;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+}
+
+.canvas {
+    width: 80%;
+    margin: 0 auto;
+    padding: 60px 0;
+}
+
 /*Comportamento somente em tablets*/
 @media screen and (min-width: 737px) and (max-width: 1023px) {
 
@@ -336,6 +417,14 @@ a {
         display: block;
     }
 
+    .container__result {
+        margin: 30px 10px;
+        min-width: 290px;
+    }
+
+    .container__result--correlacao {
+        width: 80%;
+    }
 }
 
 /*Comportamento somente em smartphones*/
@@ -351,6 +440,10 @@ a {
 
     .result {
         width: 90%;
+    }
+
+    .container__result--correlacao {
+        width: 95%;
     }
 
 }
@@ -411,5 +504,22 @@ a {
 
     .result__paragraph {
         font-size: 20px;
+    }
+
+    .data__table_header {
+        font-size: 18px;
+    }
+
+    .data__table_data {
+        font-size: 16px;
+    }
+
+    .container__result {
+        margin: 30px 10px;
+    }
+
+    .canvas {
+        width: 100%;
+        padding: 40px 5px 40px 0;
     }
 }

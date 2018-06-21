@@ -1,48 +1,48 @@
 function passardados() {
 
     //dados para o processo
-    var dado = document.querySelectorAll(".dados")[2].value;
+    var dado = document.querySelector("#data_input").value;
     window.localStorage.setItem("dados", dado);
 
     //tipo da variavel
-    if (document.querySelectorAll(".form__var-item")[0].checked) {
-        dado = document.querySelectorAll(".form__var-item")[0].value;
+    if (document.querySelector("#nominal").checked) {
+        dado = document.querySelector("#nominal").value;
         window.localStorage.setItem("variavel", dado);
     }
-    else if (document.querySelectorAll(".form__var-item")[1].checked) {
-        dado = document.querySelectorAll(".form__var-item")[1].value;
+    else if (document.querySelector("#ordinal").checked) {
+        dado = document.querySelector("#ordinal").value;
         window.localStorage.setItem("variavel", dado);
-        dado = document.querySelector(".ordinal").value;
+        dado = document.querySelector("#ordem_ordinal").value;
         window.localStorage.setItem("ordinal", dado);
     }
-    else if (document.querySelectorAll(".form__var-item")[2].checked) {
-        dado = document.querySelectorAll(".form__var-item")[2].value;
+    else if (document.querySelector("#discreta").checked) {
+        dado = document.querySelector("#discreta").value;
         window.localStorage.setItem("variavel", dado);
     }
-    else if (document.querySelectorAll(".form__var-item")[3].checked) {
-        dado = document.querySelectorAll(".form__var-item")[3].value;
+    else if (document.querySelector("#continua").checked) {
+        dado = document.querySelector("#continua").value;
         window.localStorage.setItem("variavel", dado);
     }
 
     //censo ou estimação
-    if (document.querySelectorAll(".form__var-item")[4].checked) {
-        dado = document.querySelectorAll(".form__var-item")[4].value;
+    if (document.querySelector("#processo1").checked) {
+        dado = document.querySelector("#processo1").value;
         window.localStorage.setItem("dadoestatistico", dado);
     }
     else {
-        dado = document.querySelectorAll(".form__var-item")[5].value;
+        dado = document.querySelector("#processo2").value;
         window.localStorage.setItem("dadoestatistico", dado);
     }
 
     //nome variavel e nome frequencia
-    dado = document.querySelectorAll(".dados")[0].value;
+    dado = document.querySelector("#nome_var").value;
     window.localStorage.setItem("nomevariavel", dado);
 
-    dado = document.querySelectorAll(".dados")[1].value;
+    dado = document.querySelector("#nome_freq").value;
     window.localStorage.setItem("nomefrequencia", dado);
 
     //valor medida separatriz
-    dado = document.querySelector("#valor").value;
+    dado = document.querySelector("#medida_separatriz").value;
     window.localStorage.setItem("medidaseparatriz", dado);
 }
 
@@ -149,8 +149,8 @@ function qualitativa_quantitativaDiscreta(dados2, ordinal, nomeVar, nomeFreq, ti
     }
 
     //adiciona o cabeçalho da tabela
-    tabela.unshift(["Classe", nomeVar, nomeFreq, "Frequencia Simples Percentual",
-        "Frequencia Acumulada", "Frequencia Acumulada Percentual"])
+    tabela.unshift(["Classe", nomeVar, nomeFreq, "Frequência Simples Percentual(%)",
+        "Frequência Acumulada", "Frequência Acumulada Percentual(%)"])
 
     console.log(tabela);
 
@@ -250,10 +250,15 @@ function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida, tipo)
 
     //Amplitude
     amp = ((dados2[dados2.length - 1]) - dados2[0]) + 1;
+    amp = Math.round(amp);
+    console.log("amplitude: " + amp);
 
     //Número de classes
     classe = Math.floor(Math.sqrt(dados2.length));
     classes = [classe, classe - 1, classe + 1];
+
+    console.log("classer: " + classes);
+    
 
     //Intervalo das classes
     while (rep) {
@@ -327,8 +332,8 @@ function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida, tipo)
     vetorPM.pop();
 
     //adiciona o cabeçalho da tabela
-    tabela.unshift(["Classe", nomeVar, nomeFreq, "Frequencia Simples Percentual",
-        "Frequencia Acumulada", "Frequencia Acumulada Percentual"])
+    tabela.unshift(["Classe", nomeVar, nomeFreq, "Frequência Simples Percentual(%)",
+        "Frequência Acumulada", "Frequência Acumulada Percentual(%)"])
 
     console.log(tabela);
 
@@ -515,7 +520,7 @@ function saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, co
     div.appendChild(table);
 
     var tr = document.createElement("tr");
-    tr.setAttribute("class","data__table_row");
+    tr.setAttribute("class","data__table_row-header");
     table.appendChild(tr);
 
     for (var i = 0; i < 6; i++) {
@@ -647,7 +652,7 @@ function saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, co
 
         //insere a medida separatriz
         var container = document.createElement("div");
-        container.setAttribute("class", "container__result--separatriz");
+        container.setAttribute("class", "container__result container__result--separatriz");
         div2.appendChild(container);
         var title = document.createElement("h3");
         title.setAttribute("class", "container__result_title");
@@ -668,12 +673,24 @@ function saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, co
 
 //gerar graficos
 function gerarGraficos(tamanho, variavel, tabela) {
-    var label = [], cores = [], valores = [], tipo, espaco = .9;
+    var paletaCores = [
+        "#D50000", "#FFFF00", "#1B5E20", "#03A9F4", "#FF6F00", 
+        "#F50057", "#18FFFF", "#6200EA", "#1A237E", "#76FF03", 
+        "#607D8B", "#76FF03", "#004D40", "#9C27B0", "#C6FF00" 
+    ]
+    var label = [], cores = [], valores = [], tipo, espaco = .9, cont = 0;
 
     for (var i = 1; i <= tamanho; i++) {
         label.push(tabela[i][1]);
         valores.push(tabela[i][3]);
-        cores.push('rgb(' + Math.random() * 250 + ', ' + Math.random() * 250 + ', ' + Math.random() * 250 + ')')
+        if (cont < paletaCores.length){
+            cores.push(paletaCores[cont]);
+        }
+        else {
+            cont = 0;
+            cores.push(paletaCores[cont]);
+        }
+        cont++;
     }
 
     if (variavel == "ordinal" || variavel == "nominal") {
@@ -684,17 +701,14 @@ function gerarGraficos(tamanho, variavel, tabela) {
             data: {
                 labels: label,
                 datasets: [{
-                    label: variavel,
                     data: valores,
                     backgroundColor: cores,
                 }],
             },
             options: {
-                title: {
-                    display: true,
-                    text: 'Gráfico'
+                label: {
+                    display: false,
                 },
-
             }
         });
     }
@@ -713,7 +727,6 @@ function gerarGraficos(tamanho, variavel, tabela) {
             data: {
                 labels: label,
                 datasets: [{
-                    label: variavel,
                     data: valores,
                     backgroundColor: cores,
                 }],
@@ -732,9 +745,8 @@ function gerarGraficos(tamanho, variavel, tabela) {
                     }]
                 },
 
-                title: {
-                    display: true,
-                    text: 'Gráfico'
+                label: {
+                    display: false,
                 },
 
             }

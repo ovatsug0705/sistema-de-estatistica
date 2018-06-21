@@ -1,14 +1,14 @@
 function passarDados(){
-    var dado = document.querySelectorAll(".dados")[1].value;
+    var dado = document.querySelector("#nomevar1").value;
     window.localStorage.setItem("nomevar1", dado);
 
-    dado = document.querySelectorAll(".dados")[3].value;
+    dado = document.querySelector("#nomevar2").value;
     window.localStorage.setItem("nomevar2", dado);
 
-    dado = document.querySelectorAll(".dados")[0].value;
+    dado = document.querySelector("#hist1").value;
     window.localStorage.setItem("hist1", dado);
 
-    dado = document.querySelectorAll(".dados")[2].value;
+    dado = document.querySelector("#hist2").value;
     window.localStorage.setItem("hist2", dado);
 }
 
@@ -72,7 +72,12 @@ function correlacaoRegressao(tipo) {
     b = (somaY / vary.length) - a * (somaX / vary.length);
 
     console.log("A equação da regrssão é: y = " + a.toFixed(2) + "x + " + b.toFixed(2) + ".");
-    equacao = "y = " + a.toFixed(2) + "x + " + b.toFixed(2);
+    if (b > 0) {
+        equacao = "y = " + a.toFixed(2) + "x + " + b.toFixed(2);
+    }
+    else {
+        equacao = "y = " + a.toFixed(2) + "x - " + b.toFixed(2);
+    }
 
     //gerando dados do gráfico
     maior = vary[0];
@@ -122,29 +127,52 @@ function correlacaoRegressao(tipo) {
         document.querySelector(".dados").value = "";
     }
 
-    saidaDadosGraficosCorrelacao(scatter, line, r, forca, equacao);
+    saidaDadosGraficosCorrelacao(scatter, line, r, forca, equacao, tipo);
 }
 
-function saidaDadosGraficosCorrelacao(scatter, line, r, forca, equacao){
+function saidaDadosGraficosCorrelacao(scatter, line, r, forca, equacao, tipo){
 
-    var main = document.querySelector(".main");
-    var container = document.querySelector(".container");
+    if (tipo == "1"){
+        var main = document.querySelector(".main");
+        var div = document.querySelector(".container");
+        
+        var container = document.createElement("div");
+        container.setAttribute("class", "container__result container__result--correlacao");
+        div.appendChild(container);
+        var title = document.createElement("h3");
+        title.setAttribute("class", "container__result_title");
+        title.textContent = "Coeficiente de Variação"
+        container.appendChild(title);
+        var p = document.createElement("p");
+        p.setAttribute("class", "container__result_data");
+        p.textContent = r.toFixed(2)
+        container.appendChild(p);
     
-    var p = document.createElement("p");
-        text = document.createTextNode("O coeficiente de variação é:" + r.toFixed(2));
+        var container = document.createElement("div");
+        container.setAttribute("class", "container__result container__result--correlacao");
+        div.appendChild(container);
+        var title = document.createElement("h3");
+        title.setAttribute("class", "container__result_title");
+        title.textContent = "Nível de correlação";
+        container.appendChild(title);
+        var p = document.createElement("p");
+        p.setAttribute("class", "container__result_data");
+        p.textContent = forca;
         container.appendChild(p);
-        p.appendChild(text);
-
-    var p = document.createElement("p");
-        text = document.createTextNode("O nível de correlação das variáveis é: " + forca);
+    
+        var container = document.createElement("div");
+        container.setAttribute("class", "container__result container__result--correlacao");
+        div.appendChild(container);
+        var title = document.createElement("h3");
+        title.setAttribute("class", "container__result_title");
+        title.textContent = "Equação da reta";
+        container.appendChild(title);
+        var p = document.createElement("p");
+        p.setAttribute("class", "container__result_data");
+        p.textContent = equacao;
         container.appendChild(p);
-        p.appendChild(text);
-
-    var p = document.createElement("p");
-        text = document.createTextNode("A equação da reta é: " + equacao);
-        container.appendChild(p);
-        p.appendChild(text);
-
+    }
+   
     var ctx = document.getElementById("myChart");
     var mixedChart = new Chart(ctx, {
         type: 'scatter',
@@ -169,8 +197,10 @@ function saidaDadosGraficosCorrelacao(scatter, line, r, forca, equacao){
         options: {
             scales: {
                 yAxes: [{
+                    beginAtZero: true
                 }],
                 xAxes: [{
+                    beginAtZero: true
                 }]
             }
         }
