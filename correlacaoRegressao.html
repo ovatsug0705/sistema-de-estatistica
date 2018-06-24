@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema de Estatística</title>
+    <title>Stateasy</title>
     <link rel="stylesheet" type="text/css" href="main.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="correlacaoRegressao.js"></script>
@@ -77,10 +77,10 @@
             <input type="text" class="text__input" id="nomevar2" placeholder="Nome" />
 
             <h2 class="title_2">Histórico da variável Independente(X)</h2>
-            <input type="text" class="text__input" id="hist1" placeholder="Ex: 30;20;10" />
+            <input type="text" class="text__input" id="hist1" placeholder="Ex: 30;20;10" title="Histórico da variável" required/>
 
             <h2 class="title_2">Histórico da variável Dependente(Y)</h2>
-            <input type="text" class="text__input" id="hist2" placeholder="Ex: 30;20;10" />
+            <input type="text" class="text__input" id="hist2" placeholder="Ex: 30;20;10" required/>
 
             <input type="file" accept=".txt" class="data_input__file" onchange="leitorArquivo(event, 2)" id="input_file">
             <label for="input_file" class="data_input__label" title="Carregue um arquivo .txt com os dados">Escolha um arquivo</label>

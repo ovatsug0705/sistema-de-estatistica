@@ -137,14 +137,14 @@ function qualitativa_quantitativaDiscreta(dados2, ordinal, nomeVar, nomeFreq, ti
 
     //adiciona as frequencias simples percentual, acumulada, acumulada percentual e classes na tabela
     for (var i = 0; i < tamanho; i++) {
-        numero = (tabela[i][2] / dados2.length) * 100;
-        tabela[i][3] = parseFloat(numero.toFixed(2));
+        numero = ((tabela[i][2] / dados2.length) * 100);
+        tabela[i][3] = Number(numero.toFixed(2));
         tabela[i][0] = i + 1;
 
         tabela[i][4] = aux + tabela[i][2];
         aux = tabela[i][4];
         numero = aux2 + tabela[i][3];
-        tabela[i][5] = parseFloat(numero.toFixed(2));
+        tabela[i][5] = Number(numero.toFixed(2));
         aux2 = tabela[i][5];
     }
 
@@ -162,17 +162,17 @@ function qualitativa_quantitativaDiscreta(dados2, ordinal, nomeVar, nomeFreq, ti
 
             if (i == 1) {
                 moda.push(tabela[i][2]);
-                moda2.push(tabela[i][1]);
+                moda2.push(" " + tabela[i][1] + " ");
             }
             else if (tabela[i][2] > moda[moda.length - 1]) {
                 moda.length = 0;
                 moda.push(tabela[i][2]);
                 moda2.length = 0;
-                moda2.push(tabela[i][1]);
+                moda2.push(" " + tabela[i][1] + " ");
             }
             else if (tabela[i][2] == moda[moda.length - 1]) {
                 moda.push(tabela[i][2]);
-                moda2.push(tabela[i][1]);
+                moda2.push(" " + tabela[i][1] + " ");                
             }
         }
         media = media / somaFrequencia;
@@ -344,20 +344,20 @@ function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida, tipo)
 
         if (i == 1) {
             moda.push(tabela[i][2]);
-            moda2.push(vetorPM[i - 1]).toFixed(2);
+            moda2.push(" " + (vetorPM[i - 1]).toFixed(2) + " ");
             moda3.push(tabela[i][0]);
         }
         else if (tabela[i][2] > moda[moda.length - 1]) {
             moda.length = 0;
             moda.push(tabela[i][2]);
             moda2.length = 0;
-            moda2.push(vetorPM[i - 1]);
+            moda2.push(" " + vetorPM[i - 1] + " ");
             moda3.length = 0;
             moda3.push(tabela[i][0]);
         }
         else if (tabela[i][2] == moda[moda.length - 1]) {
             moda.push(tabela[i][2]);
-            moda2.push(vetorPM[i - 1]).toFixed(2);
+            moda2.push(" " + (vetorPM[i - 1]).toFixed(2) + " ");
             moda3.push(tabela[i][0]);
         }
     }
@@ -455,8 +455,8 @@ function quantitativaContinua(dados2, processo, nomeVar, nomeFreq, medida, tipo)
                     / ((tabela[moda3[i]][2] - fiant) + (tabela[moda3[i]][2] - fipos))) * intervalo);
             }
 
-            modaKing[i] = modaKing[i].toFixed(2);
-            modaCzuber[i] = modaCzuber[i].toFixed(2);
+            modaKing[i] = " " + modaKing[i].toFixed(2) + " ";
+            modaCzuber[i] = " " + modaCzuber[i].toFixed(2) + " ";
         }
         console.log("A(s) moda(s) de King é(são): " + modaKing);
         console.log("A(s) moda(s) de Czuber é(são): " + modaCzuber);
@@ -541,6 +541,8 @@ function saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, co
             tr.appendChild(td);
         }
     }
+    
+    td.textContent = 100;
 
     if (variavel == "discreta" || variavel == "continua") {
 
@@ -706,9 +708,6 @@ function gerarGraficos(tamanho, variavel, tabela) {
                 }],
             },
             options: {
-                label: {
-                    display: false,
-                },
             }
         });
     }
@@ -743,10 +742,6 @@ function gerarGraficos(tamanho, variavel, tabela) {
                         categotyPercentage: espaco,
                         barPercentage: espaco,
                     }]
-                },
-
-                label: {
-                    display: false,
                 },
 
             }

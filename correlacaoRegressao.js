@@ -76,7 +76,7 @@ function correlacaoRegressao(tipo) {
         equacao = "y = " + a.toFixed(2) + "x + " + b.toFixed(2);
     }
     else {
-        equacao = "y = " + a.toFixed(2) + "x - " + b.toFixed(2);
+        equacao = "y = " + a.toFixed(2) + "x " + b.toFixed(2);
     }
 
     //gerando dados do gráfico
@@ -107,7 +107,8 @@ function correlacaoRegressao(tipo) {
     console.log(scatter);
 
     if (tipo == "2"){
-        var dados = document.querySelector(".dados").value.split(";");
+        var dados = document.querySelector("#var").value.split(";");
+
         if(document.querySelectorAll(".item")[0].checked){
             for (var i = 0; i < dados.length; i++){
                 dados[i] = Number(dados[i]);
@@ -124,7 +125,7 @@ function correlacaoRegressao(tipo) {
                 scatter.push({ x: x, y: y });
             }
         }
-        document.querySelector(".dados").value = "";
+        dados.value = "";
     }
 
     saidaDadosGraficosCorrelacao(scatter, line, r, forca, equacao, tipo);

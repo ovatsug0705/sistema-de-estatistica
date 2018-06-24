@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema de Estatística</title>
+    <title>Stateasy</title>
     <link rel="stylesheet" type="text/css" href="main.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="probabilidade.js"></script>
@@ -70,14 +70,14 @@
     <main class="main" onclick="fechaMenu()">
         <h1 class="title">Distribuição Binomial</h1>
         <div class="form">
-            <h2 class="title_2">Tamnho da Amostra(n)</h2>
-            <input type="text" class="dados text__input" id="n" placeholder="EX: 20" title="Tamanho da amostra"/>
+            <h2 class="title_2">Tamanho da Amostra(n)</h2>
+            <input type="text" class="text__input" id="n" placeholder="EX: 20" title="Tamanho da amostra"/>
             <h2 class="title_2">Evento(k)</h2>
-            <input type="text" class="dados text__input" id="k" placeholder="EX: 1;2;3" title="Evento a ser analisado"/>
+            <input type="text" class="text__input" id="k" placeholder="EX: 1;2;3" title="Evento a ser analisado"/>
             <h2 class="title_2">Sucesso(p)</h2>
-            <input type="text" class="dados text__input" id="p" placeholder="EX: 0.6" title="Porcentagem da parte que deseja analisar"/>
+            <input type="text" class="text__input" id="p" placeholder="EX: 0.6" title="Porcentagem da parte que deseja analisar"/>
             <h2 class="title_2">Fracasso(q)</h2>
-            <input type="text" class="dados text__input" id="q" placeholder="EX: 0.4" title="Porcentagem da parte não desejada"/>
+            <input type="text" class="text__input" id="q" placeholder="EX: 0.4" title="Porcentagem da parte não desejada"/>
 
             <button class="form__submit" onclick="distribuicaoBinomial()">Calcular</button>
         </div>

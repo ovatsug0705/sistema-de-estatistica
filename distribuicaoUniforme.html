@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema de Estatística</title>
+    <title>Stateasy</title>
     <link rel="stylesheet" type="text/css" href="main.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="probabilidade.js"></script>
@@ -71,28 +71,28 @@
         <h1 class="title">Distribuição Uniforme</h1>
         <div class="form">
             <h2 class="title_2">Ponto Máximo</h2>
-            <input type="text" class="dados text__input" id="max" placeholder="EX: 1500" title="Ponto máximo do intervalo"/>
+            <input type="text" class="text__input" id="max" placeholder="EX: 1500" title="Ponto máximo do intervalo"/>
             <h2 class="title_2">Ponto Mínimo</h2>
-            <input type="text" class="dados text__input" id="min" placeholder="EX: 200" title="Ponto mínimo do intervalo"/>
+            <input type="text" class="text__input" id="min" placeholder="EX: 200" title="Ponto mínimo do intervalo"/>
 
             <h2 class="title_2">Intervalo da Análise</h2>
             <div class="radio__container">
                 <div class="radio__content">
-                    <input type="radio" class="item radio__button" id="menor que" name="option" value="menor" checked/>
-                    <label class="radio__label" for="menor que">Menor que</label>
+                    <input type="radio" class="radio__button" id="menor_que" name="option" value="menor" checked/>
+                    <label class="radio__label" for="menor_que">Menor que</label>
                 </div>
                 <div class="radio__content">
-                    <input type="radio" class="item radio__button" id="entre" name="option" value="entre" />
+                    <input type="radio" class="radio__button" id="entre" name="option" value="entre" />
                     <label class="radio__label" for="entre">Entre</label>
                 </div>
                 <div class="radio__content">
-                    <input type="radio" class="item radio__button" id="maior que" name="option" value="maior" />
-                    <label class="radio__label" for="maior que">Maior que</label>
+                    <input type="radio" class="radio__button" id="maior_que" name="option" value="maior" />
+                    <label class="radio__label" for="maior_que">Maior que</label>
                 </div>
             </div>
 
             <h2 class="title_2">Dados</h2>
-            <input type="text" class="dados text__input" id="dados" placeholder="EX: 500" title="Entrada dos dados"/>
+            <input type="text" class="text__input" id="dados" placeholder="EX: 500" title="Entrada dos dados"/>
             <button class="form__submit" onclick="distribuicaoUniforme()">Calcular</button>
         </div>
 
