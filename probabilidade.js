@@ -25,9 +25,9 @@ function distribuicaoBinomial() {
         }
     }
 
-    var paragraph = document.querySelector(".result__paragraph");
+    var paragraph = document.querySelectorAll(".result__paragraph")[0];
     paragraph.innerHTML = "A probabilidade segundo a Distribuição Binomial é de: " + result.toFixed(2) * 100 + "%.";
-    document.querySelector(".result").style.border = "1px solid #039BE5";
+    document.querySelectorAll(".result")[0].style.border = "1px solid #039BE5";
     paragraph.style.padding = "20px";
 }
 
@@ -112,11 +112,11 @@ function distribuicaoNormal() {
         }
     }
 
-    var p = document.querySelector(".result__paragraph");
+    var p = document.querySelectorAll(".result__paragraph")[0];
     p.innerHTML = "A probabilidade segundo a Distribuição Normal é de: " + result.toFixed(2) + "%.";
 
-    document.querySelector(".result__paragraph").style.padding = "20px";
-    document.querySelector(".result").style.border = "1px solid #039BE5";
+    document.querySelectorAll(".result__paragraph")[0].style.padding = "20px";
+    document.querySelectorAll(".result")[0].style.border = "1px solid #039BE5";
 }
 
 function buscaTabela(num, media, dp) {
@@ -239,16 +239,16 @@ function distribuicaoUniforme() {
         probabilidade = (1 / (max - min)) * Math.abs(intervalo[0] - intervalo[1]);
     }
 
-    var p = document.querySelectorAll(".result__paragraph")[0]
+    var p = document.querySelectorAll(".result__paragraph")[0];
     p.innerHTML = "A probabilidadde segundo a Distribuição Uniforme é de: " + (probabilidade * 100).toFixed(2) + "%";
 
-    var p = document.querySelectorAll(".result__paragraph")[1]
+    var p = document.querySelectorAll(".result__paragraph")[1];
     p.innerHTML = "A media é de: " + media.toFixed(2);
 
-    var p = document.querySelectorAll(".result__paragraph")[2]
+    var p = document.querySelectorAll(".result__paragraph")[2];
     p.innerHTML = "O desvio padrão é de: " + dp.toFixed(2);
 
-    var p = document.querySelectorAll(".result__paragraph")[3]
+    var p = document.querySelectorAll(".result__paragraph")[3];
     p.innerHTML = "O coeficiente de variação é de: " + cv.toFixed(2) + "%";
 
     for (var i = 0; i < 4; i++) {
