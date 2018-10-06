@@ -142,7 +142,7 @@ function saidaDadosGraficosCorrelacao(scatter, line, r, forca, equacao, tipo){
         div.appendChild(container);
         var title = document.createElement("h3");
         title.setAttribute("class", "container__result_title");
-        title.textContent = "Coeficiente de Variação"
+        title.textContent = "Coeficiente de Correlação"
         container.appendChild(title);
         var p = document.createElement("p");
         p.setAttribute("class", "container__result_data");

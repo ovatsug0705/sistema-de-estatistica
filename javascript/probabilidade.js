@@ -26,7 +26,7 @@ function distribuicaoBinomial() {
     }
 
     var paragraph = document.querySelectorAll(".result__paragraph")[0];
-    paragraph.innerHTML = "A probabilidade segundo a Distribuição Binomial é de: " + result.toFixed(2) * 100 + "%.";
+    paragraph.innerHTML = "A probabilidade segundo a Distribuição Binomial é de: " + result.toFixed(2) + "%.";
     document.querySelectorAll(".result")[0].style.border = "1px solid #039BE5";
     paragraph.style.padding = "20px";
 }

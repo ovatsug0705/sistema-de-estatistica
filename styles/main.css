@@ -162,7 +162,8 @@ a {
     width: 85%;
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
     background: #ffffff;
-    margin: 0 auto;     
+    margin: 0 auto;  
+    height: 100%;   
 }
 
 .index__container {
@@ -339,6 +340,43 @@ a {
     background-color: #1A237E;
     cursor: pointer;
     transition: all 0.1s linear;
+}
+
+.footer {
+    width: 100%;
+    display: block;    
+    position: relative;
+    bottom: 0; 
+}
+
+.footer-content {
+    height: 100%;
+    position: relative;
+    background: #039BE5;
+}
+
+.footer-content__text {    
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    font-weight: normal;
+    color: #ffffff;  
+    padding: 20px 20px 0; 
+}
+
+.footer-content__text span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.footer-content__text--icon{
+    display: inline;
+}
+
+.footer-content__text--icon img{
+    width: 30px;
+    height: 30px;    
+    margin-right: 10px;
 }
 
 /*estilização da saida de resultados*/

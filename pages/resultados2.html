@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stateasy</title>
+  <link rel="stylesheet" type="text/css" href="../styles/main.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="../javascript/correlacaoRegressao.js"></script>
+  <script src="../javascript/interface.js"></script>
+  <!-- <script src="chart.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+</head>
+
+<body onload="correlacaoRegressao(1)">
+  <header class="header">
+    <input type="checkbox" class="check_input" id="checkbox">
+    <label for="checkbox" class="menu__icon">
+      <i class="material-icons">menu</i>
+      <!-- <i class="material-icons">&#9776;</i> -->
+    </label>
+    <nav class="menu__mobile">
+      <ul class="menu__list">
+        <li class="menu__list-item">
+          <a class="menu__link" href="descritiva.html">Estatística descritiva</a>
+        </li>
+        <li class="menu__list-item">
+          <a class="menu__link" href="correlacaoRegressao.html">Correlação e Regressão</a>
+        </li>
+        <li class="menu__list-item">
+          <a class="menu__link" href="distribuicaoNormal.html">Distribuição Normal</a>
+        </li>
+        <li class="menu__list-item">
+          <a class="menu__link" href="distribuicaoUniforme.html">Distribuição Uniforme</a>
+        </li>
+        <li class="menu__list-item">
+          <a class="menu__link" href="distribuicaoBinomial.html">Distribuição Binomial</a>
+        </li>
+      </ul>
+    </nav>
+    <h1 class="main__title">
+      <a class="title__link" href="../index.html">
+        <span class="title__span">stat</span>easy
+      </a>
+    </h1>
+  </header>
+  <nav class="menu" onclick="fechaMenu()">
+    <ul class="menu__list">
+      <li class="menu__list-item">
+        <a class="menu__link" href="descritiva.html">Estatística descritiva</a>
+      </li>
+      <li class="menu__list-item">
+        <a class="menu__link" href="correlacaoRegressao.html">Correlação e Regressão</a>
+      </li>
+      <li class="menu__list-item menu__probability">
+        <span>Probabilidade</span>
+        <ul class="menu__list--probability">
+          <li class="menu__list-item--probability">
+            <a class="menu__link--probability" href="distribuicaoNormal.html">Distribuição Normal</a>
+          </li>
+          <li class="menu__list-item--probability">
+            <a class="menu__link--probability" href="distribuicaoUniforme.html">Distribuição Uniforme</a>
+          </li>
+          <li class="menu__list-item--probability">
+            <a class="menu__link--probability" href="distribuicaoBinomial.html">Distribuição Binomial</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <main class="main" onclick="fechaMenu()">
+    <h1 class="title">Correlação e Regressão - Resultados</h1>
+    
+    <div class="container"></div>
+    
+    <div class="canvas">
+      <canvas id="myChart"></canvas>
+    </div>
+    
+    <div class="container_correlacao">
+      <div class="radio__container">
+        <div class="radio__content radio__content--correlacao">
+          <input type="radio" name="variavel" id="opcao1" value="x" class="item radio__button" checked/>
+          <label class="radio__label" for="opcao1">Variavel Independente(X)</label>
+        </div>
+        <div class="radio__content radio__content--correlacao">
+          <input type="radio" name="variavel" id="opcao2" value="y" class="item radio__button" />
+          <label class="radio__label" for="opcao2">Variavel Dependente(Y)</label>
+        </div>
+      </div>
+      <h2 class="title_2">Dados</h2>
+      <input type="text" class="text__input" id="var" placeholder="Ex: 30;20;10" />
+      
+      <input class="form__submit" type="button" value="Inserir Ponto" onclick="correlacaoRegressao(2)" />
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-content__text">
+        <span>
+          <a href="https://github.com/ovatsug0705/sistema-de-estatistica" target="_blank" class="footer-content__text--icon">
+            <img src="../assets/github-icon.png" alt="GitHub">
+          </a>
+        </span> 
+        <span>              
+          Stateasy - 2018
+        </span> 
+      </p>
+    </div>
+  </footer>
+</body>
+
+</html>
