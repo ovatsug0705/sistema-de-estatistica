@@ -347,6 +347,7 @@ a {
     display: block;    
     position: relative;
     bottom: 0; 
+    top: 15px;
 }
 
 .footer-content {
