@@ -6,9 +6,20 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     margin: 0;
+    padding: 0;
+    height: 100%;
     background: #fefefe;
+}
+
+.container {
+   min-height: 100%;
+   position: relative;
 }
 
 a {
@@ -159,11 +170,10 @@ a {
 
 /*estilização do container principal*/
 .main {
-    width: 85%;
-    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+    width: 85%;    
     background: #ffffff;
     margin: 0 auto;  
-    height: 100%;   
+    padding-bottom: 40px;
 }
 
 .index__container {
@@ -345,9 +355,9 @@ a {
 .footer {
     width: 100%;
     display: block;    
-    position: relative;
-    bottom: 0; 
-    top: 15px;
+    position: absolute;
+    /* position: relative; */
+    bottom: 0;
 }
 
 .footer-content {
@@ -362,7 +372,8 @@ a {
     text-align: center;
     font-weight: normal;
     color: #ffffff;  
-    padding: 20px 20px 0; 
+    padding: 20px; 
+    margin: 0;
 }
 
 .footer-content__text span {
@@ -435,7 +446,7 @@ a {
     text-align: center;    
 }
 
-.container {
+.result-container {
     text-align: center;
 }
 

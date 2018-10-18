@@ -546,7 +546,7 @@ function saidaDados(tabela, tamanho, media, mediana, valorModa, desvioPadrao, co
 
     if (variavel == "discreta" || variavel == "continua") {
 
-        var div2 = document.querySelector(".container");
+        var div2 = document.querySelector(".result-container");
 
         //insere a media
         var container = document.createElement("div");

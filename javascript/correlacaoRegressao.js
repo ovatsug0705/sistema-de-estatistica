@@ -135,7 +135,7 @@ function saidaDadosGraficosCorrelacao(scatter, line, r, forca, equacao, tipo){
 
     if (tipo == "1"){
         var main = document.querySelector(".main");
-        var div = document.querySelector(".container");
+        var div = document.querySelector(".result-container");
         
         var container = document.createElement("div");
         container.setAttribute("class", "container__result container__result--correlacao");
