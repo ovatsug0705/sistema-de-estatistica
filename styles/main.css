@@ -355,9 +355,15 @@ a {
 .footer {
     width: 100%;
     display: block;    
+<<<<<<< HEAD
     position: absolute;
     /* position: relative; */
     bottom: 0;
+=======
+    position: relative;
+    bottom: 0; 
+    top: 20px;
+>>>>>>> master
 }
 
 .footer-content {
