@@ -9,3 +9,4 @@ Caso não seja possível fazer o acesso a internet os gráficos não serão exib
 
 Link do sistema: https://ovatsug0705.github.io/sistema-de-estatistica/index.html
 
+bugfix: Colocar menu na lateral direita; Tirar segundo menu; Dropdown menu bug; Required nos campos dos formulários; Bug na dirtribuição uniforme; Melhorar código do js, css e html.
